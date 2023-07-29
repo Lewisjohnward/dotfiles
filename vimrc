@@ -1,3 +1,4 @@
+echom "Hello, world!"
 " vi compat
 set nocompatible
 
