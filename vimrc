@@ -73,7 +73,7 @@ let mapleader = "\<Space>"
 
 
 "####################### COC #######################
-" COC pairs
+" COC pairs :CocInstall coc-pairs
 " COC Snippets
 " COC coc-prettier
 ":CocInstall coc-prettier
@@ -258,10 +258,10 @@ map <leader>roc i onClick={() => function() }
 "add border
 noremap <leader>border oborder: 1px solid black;
 "navigate panes
-map <leader>h <c-w>h
-map <leader>j <c-w>j
-map <leader>k <c-w>k
-map <leader>l <c-w>l
+map <c-h> <c-w>h
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
 " close pane
 nnoremap <leader>cw <C-w>c
 noremap <leader>vw <C-w>v
