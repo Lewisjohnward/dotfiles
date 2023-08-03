@@ -282,7 +282,7 @@ map <leader><space> :w<CR>
 "Close nerd tree
 map <leader>cn :NERDTree<CR> :q<CR>
 "Goto nerdTree
-map <leader>en :NERDTree<CR>
+map <leader>en :NERDTreeFocus<CR>
 
 "inoremap<c-b> <Esc>:NERDTreeToggle<cr>
 "nnoremap<c-b> <Esc>:NERDTreeToggle<cr>
