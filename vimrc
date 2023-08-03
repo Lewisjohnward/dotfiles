@@ -241,8 +241,6 @@ noremap <leader>a; :q<CR>:q<CR>:q<CR>:q<CR>:q<CR>
 noremap <leader>sh :!bash<CR>
 "list current files
 noremap <leader>ls :ls<CR>
-"instead of :ls easier to type
-map <leader>y :ls<CR>
 "close current pane
 map <leader>pcc <c-w>c
 "naviate buffers
@@ -282,7 +280,8 @@ map <leader><space> :w<CR>
 "Close nerd tree
 map <leader>cn :NERDTree<CR> :q<CR>
 "Goto nerdTree
-map <leader>en :NERDTreeFocus<CR>
+nnoremap <leader>rn :NERDTreeRefresh<CR> :q<CR>
+map <c-n> :NERDTreeFocus<CR>
 
 "inoremap<c-b> <Esc>:NERDTreeToggle<cr>
 "nnoremap<c-b> <Esc>:NERDTreeToggle<cr>
