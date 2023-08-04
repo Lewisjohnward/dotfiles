@@ -207,12 +207,17 @@ autocmd BufWinleave *.* mkview
 autocmd BufWinEnter *.* silent loadview
 
 "close all buffers except current
-nnoremap <leader>bco :call BuffOnly()<CR>
-command! BufCurOnly execute '%bdelete|edit#|bdelete#'
-function BuffOnly()
-    BufCurOnly
-    NERDTree
+nnoremap <leader>bco :call CloseAll()<CR>
+command! BufCur execute '%bdelete|edit #|normal `"'
+function CloseAll()
+    NERDTreeFocus
+    let cwd = getcwd()
+    echom cwd
+    :exe "normal \<c-w>p"
+    BufCur
+    execute "NERDTree". cwd
 endfunction
+
 
 "edit i3 config file
 noremap <leader>i3 :e ~/.config/i3/config<CR>
@@ -280,7 +285,7 @@ map <leader><space> :w<CR>
 "Close nerd tree
 map <leader>cn :NERDTree<CR> :q<CR>
 "Goto nerdTree
-nnoremap <leader>rn :NERDTreeRefresh<CR> :q<CR>
+nnoremap <leader>rn :NERDTreeRefresh<CR>
 map <c-n> :NERDTreeFocus<CR>
 
 "inoremap<c-b> <Esc>:NERDTreeToggle<cr>
