@@ -20,6 +20,7 @@ Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'preservim/nerdtree'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'junegunn/fzf'
+Plugin 'tpope/vim-surround'
 Plugin 'junegunn/fzf.vim'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Bundle 'sonph/onehalf', {'rtp': 'vim/'}
