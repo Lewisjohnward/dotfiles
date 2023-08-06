@@ -216,6 +216,7 @@ function CloseAll()
     :exe "normal \<c-w>p"
     BufCur
     execute "NERDTree". cwd
+    :exe "normal \<c-w>p"
 endfunction
 
 
