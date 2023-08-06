@@ -157,7 +157,8 @@ alias sl='sudo $(history -p !!)'
 alias apt-list-installedbyme='comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n '\''s/^Package: //p'\'' | sort -u)'
 alias update_sys='sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get autoremove -y && sudo apt-get autoclean -y'
 alias gpom='git push origin main'
-
+alias gss='git status'
+alias gaa='git add .'
 
 myip(){
     dig +short myip.opendns.com @resolver1.opendns.com
@@ -190,6 +191,7 @@ ytdl(){
 f(){
     find . -name "*${1}*"
 }
+
 
 
 desktop='lewis@BadRobot:~'
