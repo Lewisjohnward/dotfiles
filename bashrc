@@ -166,6 +166,7 @@ alias tsc='npx tsc'
 #stashes untracked and drops them
 alias gdis='git discard'
 alias gaA='git add -A'
+alias gb='git branch'
 
 myip(){
     dig +short myip.opendns.com @resolver1.opendns.com
