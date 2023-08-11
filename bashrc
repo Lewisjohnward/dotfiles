@@ -159,6 +159,13 @@ alias update_sys='sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-
 alias gpom='git push origin main'
 alias gss='git status'
 alias gaa='git add .'
+alias gf='git fetch'
+alias gd='git diff'
+alias tsc='npx tsc'
+#it config --global alias.discard "! git stash -q --include-untracked && git stash drop -q"
+#stashes untracked and drops them
+alias gdis='git discard'
+alias gaA='git add -A'
 
 myip(){
     dig +short myip.opendns.com @resolver1.opendns.com
