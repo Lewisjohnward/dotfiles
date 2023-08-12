@@ -251,8 +251,8 @@ noremap <leader>ls :ls<CR>
 "close current pane
 map <leader>pcc <c-w>c
 "naviate buffers
-map <leader>q :bprev<CR>
-map <leader>w :bnext<CR>
+map <c-q> :bprev<CR>
+map <c-w> :bnext<CR>
 "Console.log
 map <leader>cl iconsole.log()<ESC>ha
 map <leader>log yiwoconsole.log(<ESC>pa)<ESC>:w<CR>

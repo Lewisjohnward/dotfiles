@@ -167,6 +167,10 @@ alias tsc='npx tsc'
 alias gdis='git discard'
 alias gaA='git add -A'
 alias gb='git branch'
+alias gl='git log'
+
+alias gal='git config --global -l'
+alias dotfiles='cd ~/dotfiles && gaA'
 
 myip(){
     dig +short myip.opendns.com @resolver1.opendns.com
