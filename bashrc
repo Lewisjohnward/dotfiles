@@ -167,6 +167,8 @@ alias tsc='npx tsc'
 alias gdis='git discard'
 alias gaA='git add -A'
 alias gb='git branch'
+alias gba='git branch -a'
+alias gpo='git prune origin'
 alias gl='git log'
 
 alias gal='git config --global -l'
