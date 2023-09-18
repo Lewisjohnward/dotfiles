@@ -173,6 +173,7 @@ alias gl='git log'
 
 alias gal='git config --global -l'
 alias dotfiles='cd ~/dotfiles && gaA'
+alias ..='cd ..'
 
 myip(){
     dig +short myip.opendns.com @resolver1.opendns.com
