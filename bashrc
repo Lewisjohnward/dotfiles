@@ -168,13 +168,14 @@ alias tsc='npx tsc'
 alias gdis='git discard'
 alias gaA='git add -A'
 alias gb='git branch'
+alias gba='git branch -a'
+alias gpo='git prune origin'
 alias gl='git log'
 alias gball='git branch -a'
 
 alias gal='git config --global -l'
 alias dotfiles='cd ~/dotfiles && gaA'
 alias ..='cd ..'
-alias ...='cd ../..'
 
 myip(){
     dig +short myip.opendns.com @resolver1.opendns.com
