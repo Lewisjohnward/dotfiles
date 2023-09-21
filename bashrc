@@ -146,6 +146,7 @@ alias be='vim ~/.bashrc'
 alias bu='source ~/.bashrc'
 
 alias i3e='vim ~/.config/i3/config'
+alias oe='vim ~/Obsidian/.obsidian.vimrc'
 
 alias cdb='cd ..'
 alias cdf='cd -'
@@ -168,9 +169,12 @@ alias gdis='git discard'
 alias gaA='git add -A'
 alias gb='git branch'
 alias gl='git log'
+alias gball='git branch -a'
 
 alias gal='git config --global -l'
 alias dotfiles='cd ~/dotfiles && gaA'
+alias ..='cd ..'
+alias ...='cd ../..'
 
 myip(){
     dig +short myip.opendns.com @resolver1.opendns.com
