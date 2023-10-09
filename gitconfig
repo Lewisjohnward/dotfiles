@@ -7,3 +7,5 @@
 	rv = remote -v
 	c = commit -m
 	dr = push origin -d
+[core]
+	editor = vim
