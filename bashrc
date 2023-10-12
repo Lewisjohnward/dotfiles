@@ -170,13 +170,23 @@ alias gaA='git add -A'
 alias gb='git branch'
 alias gba='git branch -a'
 alias gpo='git prune origin'
-alias gl='git log'
+alias glo='git log --oneline'
 alias gball='git branch -a'
 alias nm='sudo nmtui'
 
+gbd(){
+    git branch -d "$1"
+}
+
+gcb(){
+    git checkout -b "$1"
+}
 alias gal='git config --global -l'
 alias dotfiles='cd ~/dotfiles && gaA'
 alias ..='cd ..'
+
+alias hdmion='xrandr --output HDMI-0 --mode 1280x1024 --right-of DVI-0'
+alias hdmioff='xrandr --output HDMI-0 --off'
 
 myip(){
     dig +short myip.opendns.com @resolver1.opendns.com
