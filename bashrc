@@ -173,6 +173,12 @@ alias gpo='git prune origin'
 alias glo='git log --oneline'
 alias gball='git branch -a'
 
+alias gcm='git checkout main'
+
+gc() {
+    git checkout "$1"
+}
+
 gbd(){
     git branch -d "$1"
 }
