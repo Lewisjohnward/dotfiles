@@ -172,6 +172,7 @@ alias gba='git branch -a'
 alias gpo='git prune origin'
 alias gl='git log'
 alias gball='git branch -a'
+alias nm='sudo nmtui'
 
 alias gal='git config --global -l'
 alias dotfiles='cd ~/dotfiles && gaA'
