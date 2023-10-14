@@ -4,8 +4,9 @@
 [alias]
 	discard = ! git stash -q --include-untracked && git stash drop -q
 	last = log -1 HEAD --stat
-	rv = remote -v
-	c = commit -m
+	c = checkout
 	dr = push origin -d
+	bd = checkout
+	b = branch
 [core]
 	editor = vim
