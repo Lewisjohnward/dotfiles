@@ -172,6 +172,7 @@ alias gba='git branch -a'
 alias gpo='git prune origin'
 alias glo='git log --oneline'
 alias gball='git branch -a'
+alias nm='sudo nmtui'
 
 alias gcm='git checkout main'
 
