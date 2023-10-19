@@ -72,8 +72,9 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]\$\n '
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]\$\n '
+    PS1='[\[\e[38;5;202m\]\u\[\e[0m\]@\[\e[38;5;41m\]$(ip route get 1.1.1.1 | awk -F"src " '"'"'NR == 1{ split($2, a," ");print a[1]}'"'"')\[\e[0m\]]-[TTY:\l]-[\[\e[38;5;48m\]\w\[\e[0m\]]-[\[\e[3m\]$(git branch 2>/dev/null | grep '"'"'*'"'"' | colrm 1 2)\[\e[0m\]]\n '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -171,7 +172,7 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gpo='git prune origin'
 alias glo='git log --oneline'
-alias gball='git branch -a'
+alias gunstage="git reset HEAD"
 alias nm='sudo nmtui'
 
 alias gcm='git checkout main'
