@@ -2,7 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -f -g ""'
+#export FZF_DEFAULT_COMMAND='find . -type f ! -path "*git*"'
+export FZF_DEFAULT_COMMAND='fdfind . ~ --hidden'
+export FZF_DEFAULT_OPTS='-i --height=50% --header="CTRL-c or ESC to quit" '
 
 google() {
     search="'$*'"
@@ -174,8 +176,10 @@ alias gpo='git prune origin'
 alias glo='git log --oneline'
 alias gunstage="git reset HEAD"
 alias nm='sudo nmtui'
-
 alias gcm='git checkout main'
+alias vff='vim $(fzf)'
+alias dff='cd $(fdfind . ~ --type directory --hidden | fzf)'
+alias vim='~/nvim.appimage'
 
 gc() {
     git checkout "$1"
