@@ -179,7 +179,7 @@ alias nm='sudo nmtui'
 alias gcm='git checkout main'
 alias vff='vim $(fzf)'
 alias dff='cd $(fdfind . ~ --type directory --hidden | fzf)'
-alias vim='~/nvim.appimage'
+#alias vim='~/nvim.appimage'
 
 gc() {
     git checkout "$1"
