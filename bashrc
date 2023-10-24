@@ -179,6 +179,7 @@ alias nm='sudo nmtui'
 alias gcm='git checkout main'
 alias vff='vim $(fzf)'
 alias dff='cd $(fdfind . ~ --type directory --hidden | fzf)'
+alias grpo='git remote prune origin'
 #alias vim='~/nvim.appimage'
 
 gc() {
