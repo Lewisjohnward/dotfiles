@@ -177,8 +177,9 @@ alias glo='git log --oneline'
 alias gunstage="git reset HEAD"
 alias nm='sudo nmtui'
 alias gcm='git checkout main'
-alias vff='vim $(fzf)'
+alias vff='vim $(fdfind . ~ | fzf)'
 alias dff='cd $(fdfind . ~ --type directory --hidden | fzf)'
+alias aff='vim $(fdfind . / --hidden | fzf)'
 #alias vim='~/nvim.appimage'
 
 gc() {
