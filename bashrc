@@ -183,12 +183,8 @@ alias aff='vim $(fdfind . / --hidden | fzf)'
 alias dff='cd $(fdfind . ~ --type directory --hidden | fzf)'
 alias sff='cd $(fdfind . / --type directory --hidden | fzf)'
 #alias vim='~/nvim.appimage'
-<<<<<<< HEAD
 
 
-
-=======
->>>>>>> 4aa3c021fc94694dc41e9f532583f39390fba42c
 alias grpo='git remote prune origin'
 
 
