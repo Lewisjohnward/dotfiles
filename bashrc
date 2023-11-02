@@ -178,12 +178,13 @@ alias gunstage="git reset HEAD"
 alias nm='sudo nmtui'
 alias gcm='git checkout main'
 alias vff='vim $(fdfind . ~ | fzf)'
+alias aff='vim $(fdfind . / --hidden | fzf)'
 alias dff='cd $(fdfind . ~ --type directory --hidden | fzf)'
+alias sff='cd $(fdfind . / --type directory --hidden | fzf)'
 
 
 #alias vim='~/nvim.appimage'
 
-alias aff='vim $(fdfind . / --hidden | fzf)'
 alias grpo='git remote prune origin'
 
 gc() {
