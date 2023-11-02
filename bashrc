@@ -6,6 +6,7 @@
 export FZF_DEFAULT_COMMAND='fdfind . ~ --hidden'
 export FZF_DEFAULT_OPTS='-i --height=50% --header="CTRL-c or ESC to quit" '
 
+eval "$(jump shell)"
 google() {
     search="'$*'"
     xdg-open "http://www.google.com/search?q=$search"
@@ -181,11 +182,15 @@ alias vff='vim $(fdfind . ~ | fzf)'
 alias aff='vim $(fdfind . / --hidden | fzf)'
 alias dff='cd $(fdfind . ~ --type directory --hidden | fzf)'
 alias sff='cd $(fdfind . / --type directory --hidden | fzf)'
-
-
 #alias vim='~/nvim.appimage'
+<<<<<<< HEAD
 
+
+
+=======
+>>>>>>> 4aa3c021fc94694dc41e9f532583f39390fba42c
 alias grpo='git remote prune origin'
+
 
 gc() {
     git checkout "$1"
