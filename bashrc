@@ -182,6 +182,7 @@ alias vff='vim $(fdfind . ~ | fzf)'
 alias aff='vim $(fdfind . / --hidden | fzf)'
 alias dff='cd $(fdfind . ~ --type directory --hidden | fzf)'
 alias sff='cd $(fdfind . / --type directory --hidden | fzf)'
+alias nrd='npm run dev'
 #alias vim='~/nvim.appimage'
 
 
