@@ -277,6 +277,7 @@ map <leader>bcc :bp<bar>sp<bar>bn<bar>bd<CR>
 
 map <leader>clsx f";a)}jkjk,,i{(jkiclsxjk
 
+
 "Force close current buffer
 "map <leader>bfc :bd!
 "Close all buffers"

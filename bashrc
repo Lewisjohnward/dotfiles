@@ -188,6 +188,7 @@ alias sff='cd $(fdfind . / --type directory --hidden | fzf)'
 alias grpo='git remote prune origin'
 
 
+
 gc() {
     git checkout "$1"
 }
