@@ -144,6 +144,7 @@ hf(){
 }
 
 
+alias nvim='~/nvim.appimage'
 # Edit bash
 alias be='vim ~/.bashrc'
 # Update bash source
