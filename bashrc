@@ -184,7 +184,9 @@ alias aff='vim $(fdfind . / --hidden | fzf)'
 alias dff='cd $(fdfind . ~ --type directory --hidden | fzf)'
 alias sff='cd $(fdfind . / --type directory --hidden | fzf)'
 alias nrd='npm run dev'
+alias nvim='~/nvim.appimage'
 #alias vim='~/nvim.appimage'
+#alias findtempanddelete='find . -type f -name '#*' -or -name "*~" -exec rm {} \;'
 
 
 alias grpo='git remote prune origin'

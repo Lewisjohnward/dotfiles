@@ -20,6 +20,7 @@ Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'preservim/nerdtree'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'junegunn/fzf'
+Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'junegunn/fzf.vim'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
@@ -277,6 +278,10 @@ map <leader>bcc :bp<bar>sp<bar>bn<bar>bd<CR>
 
 map <leader>clsx f";a)}jkjk,,i{(jkiclsxjk
 
+vnoremap <c-x> x
+
+"nnoremap <leader>ics o{/*<esc>
+"nnoremap <leader>icf o*/}<esc>
 
 "Force close current buffer
 "map <leader>bfc :bd!
@@ -329,9 +334,11 @@ nnoremap <leader>csbash :e ~/cheatsheets/bashcheatsheet.sh<cr>
 nnoremap <leader>cswd :e ~/cheatsheets/webdev.js<cr>
 
 
-nnoremap <leader>ffp :Files ~/programming/<CR>
-nnoremap <leader>ffa :Files ~<CR>
-nnoremap <leader>ffb :Buffers<CR>
+" nnoremap <leader>ffp :Files ~/programming/<CR>
+nnoremap <leader>fa :Files ~<CR>
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>fg :GFiles<CR>
+nnoremap <leader>fw :Lines<CR>
 "turn word into a prop
 let @f = 'yiwA={"}jkB'
 
