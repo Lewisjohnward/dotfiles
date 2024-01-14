@@ -143,6 +143,34 @@ hf(){
     history | grep "$1"
 }
 
+# tmux
+
+htmux(){
+  echo t='tmux'
+  echo -- list tmux sessions
+  echo tls='tmux ls'
+  echo -- connect to tmux session
+  echo tat='tmux a -t'
+  echo -- create a tmux session with a given name
+  echo "tcs=tmux new -s <session-name>"
+  echo -- rename tmux session
+  echo "trs='tmux rename-session' -t <current-name> <new-name>"
+  echo "-- kill session <name>"
+  echo "tkst='tmux kill-ses -t <current-name>"
+  echo -- kill all sessions but current
+  echo tksa='tmux kill-session -a'
+}
+
+
+
+alias ta='tmux a'
+alias t='tmux'
+alias tat='tmux a -t'
+alias tls='tmux ls'
+alias tcs='tmux new -s'
+alias trs='tmux rename-session -t'
+alias tkst='tmux kill-ses -t'
+alias tksa='tmux kill-session -a'
 
 alias nvim='~/nvim.appimage'
 # Edit bash
@@ -152,6 +180,8 @@ alias bu='source ~/.bashrc'
 
 alias i3e='vim ~/.config/i3/config'
 alias oe='vim ~/Obsidian/.obsidian.vimrc'
+
+alias ..='cd ..'
 
 alias cdb='cd ..'
 alias cdf='cd -'
@@ -184,13 +214,73 @@ alias aff='vim $(fdfind . / --hidden | fzf)'
 alias dff='cd $(fdfind . ~ --type directory --hidden | fzf)'
 alias sff='cd $(fdfind . / --type directory --hidden | fzf)'
 alias nrd='npm run dev'
+alias vim='nvim'
 alias nvim='~/nvim.appimage'
 #alias vim='~/nvim.appimage'
 #alias findtempanddelete='find . -type f -name '#*' -or -name "*~" -exec rm {} \;'
+alias dip='sudo docker pull'
+alias dcps='sudo docker ps'
+alias dca='sudo docker ps --all'
+alias dcka='sudo docker ps -a -q | xargs sudo docker kill'
+alias dcsto='sudo docker container stop'
+alias dcon='sudo docker container'
+alias dcrma='sudo docker ps -a -q | xargs sudo docker rm'
+alias dcrm='sudo docker container remove'
+alias dcr='sudo docker container run'
+# alias dcd='sudo docker container run -d'
+alias dcrrm='sudo docker container run --rm'
+alias dcrit='sudo docker container run -it'
+alias dcsta='sudo docker container start'
+alias dcl='sudo docker container logs'
+alias dcp='sudo docker container top'
+# alias dconlf='sudo docker container -f'
+# alias dcsh='sudo docker container exec -it'
+
+dprune() {
+  sudo docker container prune && sudo docker volume prune && sudo docker network prune
+}
+
+dconlf(){
+  sudo docker container logs "${1}" -f
+}
+
+dcsh(){
+    sudo docker container exec -it "${1}" sh
+}
+alias di='sudo docker images'
+alias dida='sudo docker rmi -f $(sudo docker images -aq)'
+alias dirm='sudo docker rmi -f'
+alias dii='sudo docker image inspect'
+alias dih='sudo docker image history'
+dib(){
+  sudo docker image build --tag "$1" .
+}
+
+alias dv='sudo docker volume'
+alias dvc='sudo docker volume create'
+alias dvrm='sudo docker volume rm'
+alias dvls='sudo docker volume ls'
+alias dvp='sudo docker volume prune'
+
+alias dn='sudo docker network'
+alias dnls='sudo docker network ls'
+alias dnrm='sudo docker network rm'
+alias dnp='sudo docker network prune'
+
+alias dcom='sudo docker compose'
+alias dcomu='sudo docker compose up -d'
+alias dcomd='sudo docker compose down'
 
 
 alias grpo='git remote prune origin'
-
+# dcrit ourfiglet bash
+# sudo docker container top <container-name> - displays processes
+# sudo docker swarm init --advertise-addr $(hostname -i)
+# sudo docker node ls - check nodes in swarm
+# sudo docker image inspect <name/id>
+# sudo docker image history <image ID> - displays history when creating image
+# sudo docker container commit - turns container into image
+# sudo docker image tag <ID> <repo>
 
 
 gc() {
