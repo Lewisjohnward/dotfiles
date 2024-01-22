@@ -7,7 +7,7 @@ export FZF_DEFAULT_COMMAND='fdfind . ~ --hidden'
 export FZF_DEFAULT_OPTS='-i --height=50% --header="CTRL-c or ESC to quit" '
 
 eval "$(jump shell)"
-google() {
+g() {
     search="'$*'"
     xdg-open "http://www.google.com/search?q=$search"
 }
@@ -138,10 +138,6 @@ fi
 
 # ADDITIONS #
 
-# Search history
-hf(){
-    history | grep "$1"
-}
 
 # tmux
 
@@ -163,15 +159,17 @@ htmux(){
 
 
 
+alias rmi='rm -rf -i'
 alias ta='tmux a'
 alias t='tmux'
 alias tat='tmux a -t'
 alias tls='tmux ls'
 alias tcs='tmux new -s'
 alias trs='tmux rename-session -t'
-alias tkst='tmux kill-ses -t'
+alias tks='tmux kill-ses -t'
 alias tksa='tmux kill-session -a'
 
+alias te='vim ~/.tmux.conf'
 # Edit bash
 alias be='vim ~/.bashrc'
 # Update bash source
@@ -320,8 +318,20 @@ copy(){
     echo "st the clipboard" | xclip
 }
 
-pfind(){
+af(){
+    alias | grep "$1"
+}
+
+mf(){
+  man "$1" | grep "$2"
+}
+
+pf(){
     ps aux | grep "$1"
+}
+# Search history
+hf(){
+    history | grep "$1"
 }
 
 ytdl(){
