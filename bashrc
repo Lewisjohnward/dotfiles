@@ -7,7 +7,7 @@ export FZF_DEFAULT_COMMAND='fdfind . ~ --hidden'
 export FZF_DEFAULT_OPTS='-i --height=50% --header="CTRL-c or ESC to quit" '
 
 eval "$(jump shell)"
-google() {
+g() {
     search="'$*'"
     xdg-open "http://www.google.com/search?q=$search"
 }
@@ -138,10 +138,6 @@ fi
 
 # ADDITIONS #
 
-# Search history
-hf(){
-    history | grep "$1"
-}
 
 # tmux
 
@@ -163,16 +159,21 @@ htmux(){
 
 
 
+alias rmi='rm -rf -i'
 alias ta='tmux a'
 alias t='tmux'
 alias tat='tmux a -t'
 alias tls='tmux ls'
 alias tcs='tmux new -s'
 alias trs='tmux rename-session -t'
-alias tkst='tmux kill-ses -t'
+alias tks='tmux kill-ses -t'
 alias tksa='tmux kill-session -a'
 
 alias nvim='~/nvim.appimage'
+alias te='vim ~/.tmux.conf'
+<<<<<<< HEAD
+=======
+>>>>>>> d1021a4225ea5c207dd4165edf5bbfca2f4959e6
 # Edit bash
 alias be='vim ~/.bashrc'
 # Update bash source
@@ -218,6 +219,30 @@ alias vim='nvim'
 alias nvim='~/nvim.appimage'
 #alias vim='~/nvim.appimage'
 #alias findtempanddelete='find . -type f -name '#*' -or -name "*~" -exec rm {} \;'
+
+helpdocker(){
+  echo "--"
+}
+
+helpdockerswarm(){
+  echo "--- Add DOCKER_HOST"
+  echo "export DOCKER_HOST=SSH://user@ip"
+  echo "--- Init docker swarm"
+  echo "sudo docker swarm init --advertise-addr 192.168.2.151"
+  echo "--- Add a worker to this swarm"
+  echo "docker swarm join --token <TOKEN> <IP>:2377"
+  echo "--- Add a manager to the swarm"
+  echo "docker swarm join-token manager"
+  echo "--- Display all nodes in a swarm"
+  echo "docker node ls"
+  echo "--- Display docker service"
+  echo "docker service ls"
+  echo "--- Leave a swarm"
+  echo "docker swarm leave"
+}
+
+
+
 alias dip='sudo docker pull'
 alias dcps='sudo docker ps'
 alias dca='sudo docker ps --all'
@@ -321,8 +346,20 @@ copy(){
     echo "st the clipboard" | xclip
 }
 
-pfind(){
+af(){
+    alias | grep "$1"
+}
+
+mf(){
+  man "$1" | grep "$2"
+}
+
+pf(){
     ps aux | grep "$1"
+}
+# Search history
+hf(){
+    history | grep "$1"
 }
 
 ytdl(){
