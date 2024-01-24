@@ -215,6 +215,30 @@ alias vim='nvim'
 alias nvim='~/nvim.appimage'
 #alias vim='~/nvim.appimage'
 #alias findtempanddelete='find . -type f -name '#*' -or -name "*~" -exec rm {} \;'
+
+helpdocker(){
+  echo "--"
+}
+
+helpdockerswarm(){
+  echo "--- Add DOCKER_HOST"
+  echo "export DOCKER_HOST=SSH://user@ip"
+  echo "--- Init docker swarm"
+  echo "sudo docker swarm init --advertise-addr 192.168.2.151"
+  echo "--- Add a worker to this swarm"
+  echo "docker swarm join --token <TOKEN> <IP>:2377"
+  echo "--- Add a manager to the swarm"
+  echo "docker swarm join-token manager"
+  echo "--- Display all nodes in a swarm"
+  echo "docker node ls"
+  echo "--- Display docker service"
+  echo "docker service ls"
+  echo "--- Leave a swarm"
+  echo "docker swarm leave"
+}
+
+
+
 alias dip='sudo docker pull'
 alias dcps='sudo docker ps'
 alias dca='sudo docker ps --all'
