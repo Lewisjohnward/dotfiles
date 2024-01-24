@@ -171,9 +171,6 @@ alias tksa='tmux kill-session -a'
 
 alias nvim='~/nvim.appimage'
 alias te='vim ~/.tmux.conf'
-<<<<<<< HEAD
-=======
->>>>>>> d1021a4225ea5c207dd4165edf5bbfca2f4959e6
 # Edit bash
 alias be='vim ~/.bashrc'
 # Update bash source
