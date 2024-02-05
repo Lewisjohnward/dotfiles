@@ -1,6 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# examples
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
@@ -163,6 +163,7 @@ htmux(){
 
 
 
+
 alias rmi='rm -rf -i'
 alias ta='tmux a'
 alias t='tmux'
@@ -243,12 +244,14 @@ helpdockerswarm(){
 }
 
 
+alias dc='sudo docker container'
+alias di='sudo docker image'
 
 alias dip='sudo docker pull'
 alias dcps='sudo docker ps'
 alias dca='sudo docker ps --all'
 alias dcka='sudo docker ps -a -q | xargs sudo docker kill'
-alias dcsto='sudo docker container stop'
+alias dcsto='sudo docker ps -aq | sudo xargs docker stop | sudo xargs docker rm'
 alias dcon='sudo docker container'
 alias dcrma='sudo docker ps -a -q | xargs sudo docker rm'
 alias dcrm='sudo docker container remove'
@@ -274,7 +277,7 @@ dcsh(){
     sudo docker container exec -it "${1}" sh
 }
 alias di='sudo docker images'
-alias dida='sudo docker rmi -f $(sudo docker images -aq)'
+alias dirma='sudo docker rmi -f $(sudo docker images -aq)'
 alias dirm='sudo docker rmi -f'
 alias dii='sudo docker image inspect'
 alias dih='sudo docker image history'
@@ -346,6 +349,7 @@ paste(){
 copy(){
     echo "st the clipboard" | xclip
 }
+
 
 af(){
     alias | grep "$1"
