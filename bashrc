@@ -2,6 +2,10 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+
 #export FZF_DEFAULT_COMMAND='find . -type f ! -path "*git*"'
 export FZF_DEFAULT_COMMAND='fdfind . ~ --hidden'
 export FZF_DEFAULT_OPTS='-i --height=50% --header="CTRL-c or ESC to quit" '
