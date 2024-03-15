@@ -1,0 +1,224 @@
+-- GET LAZY
+require("config")
+-- This a test
+-- another
+-- test
+-- --                       light     dark
+-- -- 0   normal  black       #383a42   #282c34
+-- -- 1   normal  red         #e45649   #e06c75
+-- -- 2   normal  green       #50a14f   #98c379
+-- -- 3   normal  yellow      #c18401   #e5c07b
+-- -- 4   normal  blue        #0184bc   #61afef
+-- -- 5   normal  magenta     #a626a4   #c678dd
+-- -- 6   normal  cyan        #0997b3   #56b6c2
+-- -- 7   normal  white       #fafafa   #dcdfe4
+-- --             foreground  #383a42   #dcdfe4
+-- --           background  #fafafa   #282c34
+-- warm = {
+-- 	black = "#191a1c",
+-- 	-- Background
+-- 	bg0 = "#282c34",
+-- 	bg1 = "#2f6e42",
+-- 	bg2 = "#3e4045",
+-- 	bg3 = "#676768",
+-- 	-- bg0 = "#2c2d30",
+-- 	-- bg1 = "#35373b",
+-- 	-- bg2 = "#3e4045",
+-- 	-- bg3 = "#404247",
+-- 	bg_d = "#2b2b27",
+-- 	bg_blue = "#79b7eb",
+-- 	bg_yellow = "#e6cfa1",
+-- 	fg = "#b1b4b9",
+-- 	purple = "#c27fd7",
+-- 	green = "#99bc80",
+-- 	orange = "#c99a6e",
+-- 	blue = "#68aee8",
+-- 	yellow = "#dfbe81",
+-- 	cyan = "#5fafb9",
+-- 	red = "#e16d77",
+-- 	grey = "#a3a3a3",
+-- 	light_grey = "#8b8d91",
+-- 	dark_cyan = "#316a71",
+-- 	dark_red = "#914141",
+-- 	dark_yellow = "#8c6724",
+-- 	dark_purple = "#854897",
+-- 	diff_add = "#32352f",
+-- 	diff_delete = "#342f2f",
+-- 	diff_change = "#203444",
+-- 	diff_text = "#32526c",
+-- },
+
+-- vim.g.mapleader = ' '
+-- vim.g.maplocalleader = ' '
+--
+-- -- Set highlight on search
+-- vim.o.hlsearch = true
+-- vim.o.incsearch = true
+-- vim.keymap.set('n', '<space>hh', ':noh<cr>')
+--
+-- -- Make line numbers default
+-- vim.wo.number = true
+--
+-- -- Enable mouse mode
+-- vim.o.mouse = 'a'
+--
+-- -- Sync clipboard between OS and Neovim.
+-- --  Remove this option if you want your OS clipboard to remain independent.
+-- --  See `:help 'clipboard'`
+-- vim.o.clipboard = 'unnamedplus'
+--
+-- -- Enable break indent
+-- vim.o.breakindent = true
+--
+-- -- Save undo history
+-- vim.o.undofile = true
+--
+-- -- Case-insensitive searching UNLESS \C or capital in search
+-- vim.o.ignorecase = true
+-- vim.o.smartcase = true
+--
+-- -- Keep signcolumn on by default
+-- vim.wo.signcolumn = 'yes'
+--
+-- -- Decrease update time
+-- vim.o.updatetime = 250
+-- vim.o.timeoutlen = 300
+--
+-- -- Set completeopt to have a better completion experience
+-- vim.o.completeopt = 'menuone,noselect'
+--
+-- -- NOTE: You should make sure your terminal supports this
+-- vim.o.termguicolors = true
+--
+-- -- [[ Basic Keymaps ]]
+--
+-- -- Keymaps for better default experience
+-- -- See `:help vim.keymap.set()`
+-- vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+--
+-- -- Remap for dealing with word wrap
+-- vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+-- vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+--
+-- -- [[ Highlight on yank ]]
+-- -- See `:help vim.highlight.on_yank()`
+-- local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+-- vim.api.nvim_create_autocmd('TextYankPost', {
+--   callback = function()
+--     vim.highlight.on_yank()
+--   end,
+--   group = highlight_group,
+--   pattern = '*',
+-- })
+--
+-- vim.opt.relativenumber = true
+-- --vim.api.nvim_set_hl(0, 'LineNr', { fg = "white"})
+--
+-- -- nvim-tree
+-- -- disable netrw at the very start of your init.lua
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+--
+-- -- save
+-- vim.keymap.set('n', '<space><space>', ':w<cr>')
+-- -- quit
+-- vim.keymap.set('n', '<space>a;', ':q<cr>:q<cr>:q<cr>:q<cr>')
+-- -- edit rc
+-- vim.keymap.set('n', '<space>rce', ':e $MYVIMRC<cr>', { silent = true })
+-- -- re-source
+-- vim.keymap.set('n', '<space>rcu', ':source $MYVIMRC<cr>', { silent = true })
+--
+-- -- navigate buffers
+-- vim.keymap.set('n', '<tab>', ':bnext<cr>', { silent = true })
+-- vim.keymap.set('n', '<s-tab>', ':bprev<cr>', { silent = true })
+--
+-- -- scroll
+-- --vim.keymap.set('n', '<c-u>', '<c-u>zz')
+-- -- vim.keymap.set('n', '<c-d>', '<c-d>zz')
+-- vim.o.scrolloff = 8
+--
+--
+--
+--  -- close buffer
+--  -- buffer previous| split| buffer next| buffer delete
+--  vim.keymap.set('n', '<space>bcc', ':bp<bar>sp<bar>bn<bar>bd<CR>')
+--  -- if buffer has unsaved changes force close
+--  -- vim.keymap.set('n', '<c-x>x', ':bd!<CR>')
+--
+--  vim.keymap.set('i', 'jk', '<esc>')
+--
+--  -- Window maps
+--  vim.keymap.set('n', '<c-h>', '<c-w>h')
+--  vim.keymap.set('n', '<c-j>', '<c-w>j')
+--  vim.keymap.set('n', '<c-k>', '<c-w>k')
+--  vim.keymap.set('n', '<c-l>', '<c-w>l')
+--  vim.keymap.set('n', '<space>vw', '<c-w>v')
+--  vim.keymap.set('n', '<space>cw', '<c-w>c')
+--
+--  -- open terminal
+--  vim.keymap.set('n', '<space>sl', ':rightb vsplit term://bash<cr>')
+--
+--
+--  -- Telescope
+--  --leader sf -- search files
+--  --:telescope keymaps
+--  vim.keymap.set('n', '<space>sk', ':Telescope keymaps<cr>')
+--
+--  -- NvimTree
+--  vim.keymap.set('n', '<c-n>', ':NvimTreeFocus<cr>', { silent = true })
+--  vim.keymap.set('n', '<space>cn', ':NvimTreeClose<cr>', { silent = true })
+--  --vim.keymap.set('n', '<c-n>', ':NvimTreeFindFileToggle!<cr>', { silent = true })
+--  -- nvimtreeopen
+--  -- nvimtreeclose
+--  -- NvimTreeToggle
+--  -- nvimtreerefresh
+--  -- nvimtreefindfile
+--  -- nvimtreefindfiletoggle
+--  -- nvimtreecollapse
+--  -- nvimtreecollapsekeepbuffers
+--
+--
+--  -- Disable comments when hitting o or O
+--  vim.o.formatoptions = 'cro'
+--
+--  -- buffer previous| split| buffer next| buffer delete
+--  vim.keymap.set('n', '<space>bcc', ':bp<bar>sp<bar>bn<bar>bd<CR>')
+--  -- if buffer has unsaved changes force close
+--  -- vim.keymap.set('n', '<c-x>x', ':bd!<CR>')
+--
+--  vim.keymap.set('i', 'jk', '<esc>')
+--
+--  -- Window maps
+--  vim.keymap.set('n', '<c-h>', '<c-w>h')
+--  vim.keymap.set('n', '<c-j>', '<c-w>j')
+--  vim.keymap.set('n', '<c-k>', '<c-w>k')
+--  vim.keymap.set('n', '<c-l>', '<c-w>l')
+--  vim.keymap.set('n', '<space>vw', '<c-w>v')
+--  vim.keymap.set('n', '<space>cw', '<c-w>c')
+--
+--  -- open terminal
+--  vim.keymap.set('n', '<space>sl', ':rightb vsplit term://bash<cr>')
+--
+--
+--  -- Telescope
+--  --leader sf -- search files
+--  --:telescope keymaps
+--  vim.keymap.set('n', '<space>sk', ':Telescope keymaps<cr>')
+--
+--  -- NvimTree
+--  vim.keymap.set('n', '<c-n>', ':NvimTreeFocus<cr>', { silent = true })
+--  vim.keymap.set('n', '<space>cn', ':NvimTreeClose<cr>', { silent = true })
+--  --vim.keymap.set('n', '<c-n>', ':NvimTreeFindFileToggle!<cr>', { silent = true })
+--  -- nvimtreeopen
+--  -- nvimtreeclose
+--  -- NvimTreeToggle
+--  -- nvimtreerefresh
+--  -- nvimtreefindfile
+--  -- nvimtreefindfiletoggle
+--  -- nvimtreecollapse
+--  -- nvimtreecollapsekeepbuffers
+--
+--
+--  -- Disable comments when hitting o or O
+--  vim.o.formatoptions = 'cro'
+--
