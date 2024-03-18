@@ -199,8 +199,8 @@ bar {
         background #000000
             statusline #ffffff
                               #border # background #text
-            focused_workspace #2f79ad #2f79ad #ffffff
-            active_workspace #2f79ad #2f79ad #ffffff
+            focused_workspace #285577 #285577 #ffffff
+            active_workspace #285577 #285577 #ffffff
             inactive_workspace #000000 #000000 #2f79ad
     }
     # font pango: Hack Regular 14 
@@ -245,8 +245,8 @@ bar {
         background #000000
             statusline #ffffff
                               #border # background #text
-            focused_workspace #2f79ad #2f79ad #ffffff
-            active_workspace #2f79ad #2f79ad #000000
+            focused_workspace #285577 #285577 #ffffff
+            active_workspace #285577 #285577 #000000
             inactive_workspace #000000 #000000 #2f79ad
     }
     output nonprimary
