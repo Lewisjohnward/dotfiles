@@ -1,3 +1,9 @@
+## K8s
+alias kubectl='minikube kubectl --'
+
+# Tells bash to append to history everytime prompt is show
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -36,7 +42,7 @@ esac
 HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
-shopt -s histappend
+# shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=2000
@@ -48,7 +54,7 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -204,12 +210,46 @@ alias gba='git branch -a'
 alias gpo='git prune origin'
 alias glo='git log --oneline'
 alias gunstage="git reset HEAD"
-alias nm='sudo nmtui'
+# alias nm='sudo nmtui'
 alias gcm='git checkout main'
-alias vff='vim $(fdfind . ~ | fzf)'
-alias aff='vim $(fdfind . / --hidden | fzf)'
-alias dff='cd $(fdfind . ~ --type directory --hidden | fzf)'
-alias sff='cd $(fdfind . / --type directory --hidden | fzf)'
+# alias vff='vim $(fdfind . ~ | fzf)'
+# alias aff='vim $(fdfind . / --hidden | fzf)'
+alias df='cd $(fdfind . ~ --type directory --hidden | fzf)'
+alias rf='cd $(fdfind . / --type directory --hidden | fzf)'
+# alias af='$(cat ~/.bashrc | grep "^alias" | grep -v "#" | sed "s/alias //"| fzf)'
+
+alias bopen='cd $books_dir; bn="$(find . -type f | fzf)"; zathura "${bn}" & disown -h'
+
+
+
+
+bf() {
+	books_dir="$HOME/Downloads"
+	cd "$books_dir" || return
+	bn="$(find . -type f | fzf)"
+	if [ -n "$bn" ]; then
+		zathura "$bn" &
+		disown -h
+	fi
+}
+
+hf() {
+	val=$(history | sort -r | sed "s/[0-9]*  //" | fzf +s)
+	xdotool type "$val"
+	tput el1
+	echo
+	# echo "$alias"
+}
+
+af() {
+	val=$(grep "^alias" ~/.bashrc | grep -v "#" | sed "s/alias //" | fzf)
+	alias=$(echo "$val" | sed 's/alias //' | sed 's/=.*//')
+	xdotool type "$alias"
+	tput el1
+	echo
+	# echo "$alias"
+}
+
 alias nrd='npm run dev'
 alias vim='nvim'
 #alias findtempanddelete='find . -type f -name '#*' -or -name "*~" -exec rm {} \;'
@@ -235,61 +275,61 @@ helpdockerswarm() {
 	echo "docker swarm leave"
 }
 
-alias dc='sudo docker container'
-alias di='sudo docker image'
+alias dc='docker container'
+alias di='docker image'
 
-alias dip='sudo docker pull'
-alias dcps='sudo docker ps'
-alias dca='sudo docker ps --all'
-alias dcka='sudo docker ps -a -q | xargs sudo docker kill'
-alias dcsto='sudo docker ps -aq | sudo xargs docker stop | sudo xargs docker rm'
-alias dcon='sudo docker container'
-alias dcrma='sudo docker ps -a -q | xargs sudo docker rm'
-alias dcrm='sudo docker container remove'
-alias dcr='sudo docker container run'
+alias dip='docker pull'
+alias dcps='docker ps'
+alias dca='docker ps --all'
+alias dcka='docker ps -a -q | xargs sudo docker kill'
+alias dcsto='docker ps -aq | xargs docker stop | xargs docker rm'
+alias dcon='docker container'
+alias dcrma='docker ps -a -q | xargs docker rm'
+alias dcrm='docker container remove'
+alias dcr='docker container run'
 # alias dcd='sudo docker container run -d'
-alias dcrrm='sudo docker container run --rm'
-alias dcrit='sudo docker container run -it'
-alias dcsta='sudo docker container start'
-alias dcl='sudo docker container logs'
-alias dcp='sudo docker container top'
+alias dcrrm='docker container run --rm'
+alias dcrit='docker container run -it'
+alias dcsta='docker container start'
+alias dcl='docker container logs'
+alias dcp='docker container top'
 # alias dconlf='sudo docker container -f'
 # alias dcsh='sudo docker container exec -it'
 
 dprune() {
-	sudo docker container prune && sudo docker volume prune && sudo docker network prune
+	docker container prune && docker volume prune && docker network prune
 }
 
 dconlf() {
-	sudo docker container logs "${1}" -f
+	docker container logs "${1}" -f
 }
 
 dcsh() {
-	sudo docker container exec -it "${1}" sh
+	docker container exec -it "${1}" sh
 }
-alias di='sudo docker images'
-alias dirma='sudo docker rmi -f $(sudo docker images -aq)'
-alias dirm='sudo docker rmi -f'
-alias dii='sudo docker image inspect'
-alias dih='sudo docker image history'
+alias di='docker images'
+alias dirma='docker rmi -f $(sudo docker images -aq)'
+alias dirm='docker rmi -f'
+alias dii='docker image inspect'
+alias dih='docker image history'
 dib() {
-	sudo docker image build --tag "$1" .
+	docker image build --tag "$1" .
 }
 
-alias dv='sudo docker volume'
-alias dvc='sudo docker volume create'
-alias dvrm='sudo docker volume rm'
-alias dvls='sudo docker volume ls'
-alias dvp='sudo docker volume prune'
+alias dv='docker volume'
+alias dvc='docker volume create'
+alias dvrm='docker volume rm'
+alias dvls='docker volume ls'
+alias dvp='docker volume prune'
 
-alias dn='sudo docker network'
-alias dnls='sudo docker network ls'
-alias dnrm='sudo docker network rm'
-alias dnp='sudo docker network prune'
+alias dn='docker network'
+alias dnls='docker network ls'
+alias dnrm='docker network rm'
+alias dnp='docker network prune'
 
-alias dcom='sudo docker compose'
-alias dcomu='sudo docker compose up -d'
-alias dcomd='sudo docker compose down'
+alias dcom='docker compose'
+alias dcomu='docker compose up -d'
+alias dcomd='docker compose down'
 
 alias grpo='git remote prune origin'
 # dcrit ourfiglet bash
@@ -338,9 +378,9 @@ copy() {
 	echo "st the clipboard" | xclip
 }
 
-af() {
-	alias | grep "$1"
-}
+# af() {
+# 	alias | grep "$1"
+# }
 
 mf() {
 	man "$1" | grep "$2"
@@ -350,9 +390,9 @@ pf() {
 	ps aux | grep "$1"
 }
 # Search history
-hf() {
-	history | grep "$1"
-}
+# hf() {
+# 	history | grep "$1"
+# }
 
 ytdl() {
 	yt-dlp -f 'bestvideo[height<=380]+bestaudio/best[height<=380]' "$(xclip -o)" -o "%(playlist_index)s %(title)s.%(ext)s"
@@ -424,3 +464,6 @@ alias "tfi"="terraform init"
 alias "tp"="terraform plan"
 alias "tfa"="terraform apply -auto-approve"
 alias "tfd"="terraform destroy -auto-approve"
+
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/Downloads/android-studio/bin:$PATH"
