@@ -213,15 +213,20 @@ alias gunstage="git reset HEAD"
 # alias nm='sudo nmtui'
 alias gcm='git checkout main'
 # alias vff='vim $(fdfind . ~ | fzf)'
-# alias aff='vim $(fdfind . / --hidden | fzf)'
+
+
+
+## Find file from home
+alias ff='$(fdfind . ~ --hidden | fzf)'
+## Find anything from root
+# alias rf='$(fdfind . / --hidden | fzf)'
+## find directory from home
 alias df='cd $(fdfind . ~ --type directory --hidden | fzf)'
+## Find dir from root
 alias rf='cd $(fdfind . / --type directory --hidden | fzf)'
 # alias af='$(cat ~/.bashrc | grep "^alias" | grep -v "#" | sed "s/alias //"| fzf)'
 
-alias bopen='cd $books_dir; bn="$(find . -type f | fzf)"; zathura "${bn}" & disown -h'
-
-
-
+# alias bopen='cd $books_dir; bn="$(find . -type f | fzf)"; zathura "${bn}" & disown -h'
 
 bf() {
 	books_dir="$HOME/Downloads"
