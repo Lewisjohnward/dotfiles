@@ -239,7 +239,7 @@ bf() {
 }
 
 hf() {
-	val=$(history | sort -r | sed "s/[0-9]*  //" | fzf +s)
+	val=$(history | sort -nr | sed "s/[0-9]*  //" | fzf +s)
 	xdotool type "$val"
 	tput el1
 	echo
