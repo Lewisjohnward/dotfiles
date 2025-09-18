@@ -1,3 +1,13 @@
+# Show HUD on new terminal
+if [ -f ~/.hud ]; then
+    ~/.hud
+fi
+
+alias ws='windsurf .'
+alias wsb='windsurf ~/.bashrc'
+alias wsi3='windsurf ~/.config/i3/config'
+alias wst='windsurf ~/.tmux.conf'
+
 ## K8s
 alias kubectl='minikube kubectl --'
 
@@ -9,9 +19,9 @@ PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # examples
 
-if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-	exec tmux
-fi
+# if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+# 	exec tmux
+# fi
 
 #export FZF_DEFAULT_COMMAND='find . -type f ! -path "*git*"'
 export FZF_DEFAULT_COMMAND='fdfind . ~ --hidden'
@@ -22,6 +32,9 @@ g() {
 	search="'$*'"
 	xdg-open "http://www.google.com/search?q=$search"
 }
+
+alias vs="vagrant status"
+
 #google() {
 #    search=""
 #    echo "Googling: $@"
@@ -221,7 +234,7 @@ alias ff='$(fdfind . ~ --hidden | fzf)'
 ## Find anything from root
 # alias rf='$(fdfind . / --hidden | fzf)'
 ## find directory from home
-alias df='cd $(fdfind . ~ --type directory --hidden | fzf)'
+# alias df='cd $(fdfind . ~ --type directory --hidden | fzf)'
 ## Find dir from root
 alias rf='cd $(fdfind . / --type directory --hidden | fzf)'
 # alias af='$(cat ~/.bashrc | grep "^alias" | grep -v "#" | sed "s/alias //"| fzf)'
@@ -239,11 +252,12 @@ bf() {
 }
 
 hf() {
-	val=$(history | sort -nr | sed "s/[0-9]*  //" | fzf +s)
-	xdotool type "$val"
-	tput el1
-	echo
-	# echo "$alias"
+    local cmd
+    cmd=$(history | awk '{$1=""; print $0}' | fzf --tac --tiebreak=index --select-1 --exit-0 | sed 's/^ *//')
+    if [ -n "$cmd" ]; then
+        history -s "$cmd"  # Add to history
+        eval "$cmd"        # Execute the command
+    fi
 }
 
 af() {
@@ -257,6 +271,8 @@ af() {
 
 alias nrd='npm run dev'
 alias vim='nvim'
+alias v='nvim'
+alias nvim='/opt/nvim/nvim'
 #alias findtempanddelete='find . -type f -name '#*' -or -name "*~" -exec rm {} \;'
 
 helpdocker() {
@@ -280,6 +296,24 @@ helpdockerswarm() {
 	echo "docker swarm leave"
 }
 
+# Remember and navigate to previous directories
+export CDHISTFILE=~/.cd_history
+cd() { builtin cd "$@" && pwd >| "$CDHISTFILE"; }
+cdl() { [ -f "$CDHISTFILE" ] && cd "$(cat "$CDHISTFILE")"; }
+
+# cat file.txt | c - Copy file contents to clipboard
+# echo "text" | c - Copy text to clipboard
+# p - Paste from clipboard
+# p > file.txt - Paste to a file
+# Copy to clipboard
+if command -v xclip &> /dev/null; then  # Linux with X11
+    alias c='xclip -selection clipboard'
+    alias p='xclip -o -selection clipboard'
+elif command -v pbcopy &> /dev/null; then  # macOS
+    alias c='pbcopy'
+    alias p='pbpaste'
+fi
+
 alias dc='docker container'
 alias di='docker image'
 
@@ -298,6 +332,8 @@ alias dcrit='docker container run -it'
 alias dcsta='docker container start'
 alias dcl='docker container logs'
 alias dcp='docker container top'
+alias dcud='docker compose up -d'
+alias dcd='docker compose down'
 # alias dconlf='sudo docker container -f'
 # alias dcsh='sudo docker container exec -it'
 
