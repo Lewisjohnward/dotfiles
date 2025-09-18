@@ -275,7 +275,6 @@ af() {
 alias nrd='npm run dev'
 alias vim='nvim'
 alias v='nvim'
-alias nvim='/opt/nvim/nvim'
 #alias findtempanddelete='find . -type f -name '#*' -or -name "*~" -exec rm {} \;'
 
 helpdocker() {
