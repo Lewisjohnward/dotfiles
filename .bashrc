@@ -8,6 +8,9 @@ alias wsb='windsurf ~/.bashrc'
 alias wsi3='windsurf ~/.config/i3/config'
 alias wst='windsurf ~/.tmux.conf'
 
+alias penv='source venv/bin/activate'
+alias pdisactivate='deactivate'
+
 ## K8s
 alias kubectl='minikube kubectl --'
 
