@@ -9,4 +9,4 @@
 	bd = checkout
 	b = branch
 [core]
-	editor = vim
+	editor = nvim
