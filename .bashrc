@@ -1,11 +1,11 @@
-# Show HUD on new terminal
-if [ -f ~/.hud ]; then
-    ~/.hud
-fi
+
+clear && fastfetch
 
 alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker'
 
-alias ws='windsurf .'
+alias grh='git reset HEAD~1'
+
+alias ws='windsurf . && exit'
 alias wsb='windsurf ~/.bashrc'
 alias wsi3='windsurf ~/.config/i3/config'
 alias wst='windsurf ~/.tmux.conf'
