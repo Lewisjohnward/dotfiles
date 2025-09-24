@@ -3,6 +3,8 @@ if [ -f ~/.hud ]; then
     ~/.hud
 fi
 
+alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker'
+
 alias ws='windsurf .'
 alias wsb='windsurf ~/.bashrc'
 alias wsi3='windsurf ~/.config/i3/config'
