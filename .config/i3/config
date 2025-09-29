@@ -357,7 +357,7 @@ mode "$temp_mode"{
 #     bindsym Return mode "default"
 # }
 
-set $utility_launcher Utilities: [m]ullvad, [s]shot, [w]indow, [r]un, [i]talian, [e]nglish, [x]kill, [k]eys, [f]av-websites
+set $utility_launcher Utilities: [h]ide, [s]shot, [w]indow, [r]un, [i]talian, [e]nglish, [x]kill, [k]eys, [f]av-websites
 
 bindsym $mod+u mode "$utility_launcher"
 mode "$utility_launcher"{
@@ -365,6 +365,7 @@ mode "$utility_launcher"{
     bindsym s exec flameshot gui; mode "default"
     bindsym i exec setxkbmap it; mode "default"
     bindsym e exec setxkbmap gb; mode "default"
+    bindsym h exec ~/Scripts/savei3.py; mode "default"
     bindsym x exec xkill; mode "default"
     bindsym w exec rofi -show window; mode "default"
     bindsym f exec awk -F'|' '{print $1}' ~/Syncthing/rofi/websites t| rofi -dmenu -p "Choose a website" | xargs -r -I {} grep "^{}|" ~/Syncthing/rofi/websites | awk -F'|' '{print $2}' | xargs -r firefox; mode "default"
