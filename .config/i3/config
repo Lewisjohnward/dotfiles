@@ -152,6 +152,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -357,6 +358,7 @@ mode "$temp_mode"{
 #     bindsym Return mode "default"
 # }
 
+bindsym --release $mod+p exec xdotool type --clearmodifiers 'xclip -selection c-out'
 set $utility_launcher Utilities: [h]ide, [s]shot, [w]indow, [r]un, [i]talian, [e]nglish, [x]kill, [k]eys, [f]av-websites
 
 bindsym $mod+u mode "$utility_launcher"
