@@ -1,6 +1,9 @@
 
+
 clear && fastfetch
 
+export EDITOR="nvim"
+export VISUAL="nvim"
 alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker'
 
 alias grh='git reset HEAD~1'
