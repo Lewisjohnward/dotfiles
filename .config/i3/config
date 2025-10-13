@@ -370,7 +370,7 @@ mode "$utility_launcher"{
     bindsym h exec ~/Scripts/savei3.py; mode "default"
     bindsym x exec xkill; mode "default"
     bindsym w exec rofi -show window; mode "default"
-    bindsym f exec awk -F'|' '{print $1}' ~/Syncthing/rofi/websites t| rofi -dmenu -p "Choose a website" | xargs -r -I {} grep "^{}|" ~/Syncthing/rofi/websites | awk -F'|' '{print $2}' | xargs -r firefox; mode "default"
+    bindsym f exec awk -F'|' '{print $1}' ~/Syncthing/rofi/websites t| rofi -dmenu -p "Choose a website" | xargs -r -I {} grep "^{}|" ~/Syncthing/rofi/websites | awk -F'|' '{print $2}' | xargs -r firefox --new-window; mode "default"
     bindsym r exec rofi -show run; mode "default"
     bindsym k exec cat ~/Syncthing/rofi/text | rofi -dmenu | xargs -I {} bash -c 'echo -n "{}" | xclip -selection clipboard && xdotool key Ctrl+v'; mode "default"
     bindsym Escape mode "default"
