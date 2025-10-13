@@ -318,12 +318,12 @@ elif command -v pbcopy &> /dev/null; then  # macOS
     alias p='pbpaste'
 fi
 
-alias dc='docker container'
 alias di='docker image'
 
 alias dip='docker pull'
 alias dcps='docker ps'
 alias dca='docker ps --all'
+alias dc='docker container ls'
 alias dcka='docker ps -a -q | xargs sudo docker kill'
 alias dcsto='docker ps -aq | xargs docker stop | xargs docker rm'
 alias dcon='docker container'
