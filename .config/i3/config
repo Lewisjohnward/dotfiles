@@ -320,12 +320,13 @@ bindsym $mod+n exec --no-startup-id i3-sensible-terminal -e vim ~/notes.txt
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # bindsym $mod+i exec flameshot gui
 
-set $mode_launcher Launcher: [f]irefox, [c]hrome, [s]kype, [C]alibre, [t]hunar, [a]ndroid-studio, [A]nki, [r]anger, [z]athura, [v]irtual box, [i]nsomnia, [o]bsidian
+set $mode_launcher Launcher: [f]irefox, [c]hrome, [s]kype, [C]alibre, [t]hunar, [a]ndroid-studio, [A]nki, [r]anger, [z]athura, [v]irtual box, [i]nsomnia, [o]bsidian, [e]mail
 
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher"{
     bindsym a exec android-studio
     bindsym A exec anki
+    bindsym e exec --no-startup-id i3-msg 'exec xfce4-terminal -e aerc'
     bindsym c exec google-chrome
     bindsym C exec calibre
     bindsym f exec firefox
