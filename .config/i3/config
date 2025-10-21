@@ -520,3 +520,16 @@ mode "$searchmode" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+set $dockermode docker: [s]hell, [l]ogs, [r]emove, s[t]art, sto[p], [R]estart
+bindsym $mod+d mode "$dockermode"
+mode "$dockermode" {
+    bindsym s exec /home/lewis/Scripts/rofi/docker/docker-shell.sh; mode "default"
+    bindsym l exec /home/lewis/Scripts/rofi/docker/docker-logs.sh; mode "default"
+    bindsym r exec /home/lewis/Scripts/rofi/docker/docker-remove.sh; mode "default"
+    bindsym t exec /home/lewis/Scripts/rofi/docker/docker-start.sh; mode "default"
+    bindsym p exec /home/lewis/Scripts/rofi/docker/docker-stop.sh; mode "default"
+    bindsym Shift+r exec /home/lewis/Scripts/rofi/docker/docker-restart.sh; mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
