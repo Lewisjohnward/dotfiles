@@ -370,7 +370,7 @@ mode "$find_mode"{
 #     bindsym Return mode "default"
 # }
 
-set $utility_launcher Utilities: [h]ide, [s]shot, [w]indow, [r]un, [i]talian, [e]nglish, [x]kill, [k]eys, [f]av-websites, [I]cons
+set $utility_launcher Utilities: [h]ide, [s]shot, [w]indow, [r]un, [i]talian, [e]nglish, [x]kill, [k]eys, [f]av-websites, [I]cons, [E]mojis
 
 bindsym $mod+u mode "$utility_launcher"
 mode "$utility_launcher"{
@@ -386,6 +386,7 @@ mode "$utility_launcher"{
     bindsym r exec rofi -show run -auto-select; mode "default"
     bindsym k exec cat ~/Syncthing/rofi/text | rofi -dmenu -auto-select| xargs -I {} bash -c 'echo -n "{}" | xclip -selection clipboard && xdotool key Ctrl+v'; mode "default"
     bindsym Shift+i exec ~/Scripts/rofi/rofi-icons.sh; mode "default"
+    bindsym Shift+e exec ~/Scripts/rofi/rofi-emoji.sh; mode "default"
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
