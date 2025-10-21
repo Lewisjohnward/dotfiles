@@ -22,3 +22,4 @@ application/xhtml+xml=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
 text/plain=vim.desktop;
+application/vnd.debian.binary-package=gnome-software-local-file.desktop;
