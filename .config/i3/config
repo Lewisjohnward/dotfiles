@@ -382,7 +382,7 @@ mode "$utility_launcher"{
     bindsym g exec ~/Scripts/test-google.sh; mode "default"
     bindsym x exec xkill; mode "default"
     bindsym w exec rofi -show window; mode "default"
-    bindsym f exec awk -F'|' '{print $1}' ~/Syncthing/rofi/websites t| rofi -dmenu -auto-select -p "Choose a website" | xargs -r -I {} grep "^{}|" ~/Syncthing/rofi/websites | awk -F'|' '{print $2}' | xargs -r firefox --new-window; mode "default"
+    bindsym f exec ~/Scripts/rofi/rofi-websites.sh; mode "default"
     bindsym r exec rofi -show run -auto-select; mode "default"
     bindsym k exec cat ~/Syncthing/rofi/text | rofi -dmenu -auto-select| xargs -I {} bash -c 'echo -n "{}" | xclip -selection clipboard && xdotool key Ctrl+v'; mode "default"
     bindsym Shift+i exec ~/Scripts/rofi/rofi-icons.sh; mode "default"
