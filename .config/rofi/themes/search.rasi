@@ -1,0 +1,61 @@
+/* Search Theme - Input only */
+* {
+    bg-col:  #1e1e2e;
+    bg-col-light: #313244;
+    border-col: #89b4fa;
+    blue: #89b4fa;
+    fg-col: #cdd6f4;
+
+    width: 1000;
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+window {
+    height: 80px;
+    border: 3px;
+    border-color: @border-col;
+    background-color: @bg-col;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+mainbox {
+    background-color: @bg-col;
+    children: [inputbar];
+}
+
+inputbar {
+    children: [prompt,entry];
+    background-color: @bg-col;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+prompt {
+    background-color: @blue;
+    padding: 8px 12px;
+    text-color: @bg-col;
+    border-radius: 5px;
+    margin: 0px 10px 0px 0px;
+}
+
+entry {
+    padding: 8px;
+    text-color: @fg-col;
+    background-color: @bg-col;
+    placeholder: "Search...";
+    placeholder-color: #6c7086;
+}
+
+/* Hide all other elements */
+listview {
+    enabled: false;
+}
+
+message {
+    enabled: false;
+}
+
+mode-switcher {
+    enabled: false;
+}
