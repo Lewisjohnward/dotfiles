@@ -19,7 +19,7 @@ element-text, element-icon , mode-switcher {
 }
 
 window {
-    height: 360px;
+    height: 800px;
     border: 3px;
     border-color: @border-col;
     background-color: @bg-col;
@@ -63,7 +63,7 @@ listview {
     padding: 6px 0px 0px;
     margin: 10px 40px 0px 20px;
     columns: 1;
-    lines: 5;
+    lines: 15;
     background-color: @bg-col;
 }
 
