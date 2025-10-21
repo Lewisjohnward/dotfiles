@@ -83,3 +83,5 @@ vim.api.nvim_set_keymap(
   [[<cmd>lua require('telescope.builtin').grep_string()<cr>]],
   { silent = true, noremap = true, desc = "Find occurence of hovered word in project" }
 )
+
+vim.opt.wrap = true
