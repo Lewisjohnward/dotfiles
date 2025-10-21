@@ -9,6 +9,8 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# exec --no-startup-id ~/Scripts/hdmi-setup.sh
+
 include display.conf
 set $mod Mod4
 
@@ -73,13 +75,13 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+space exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+# bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -109,18 +111,18 @@ bindsym $mod+Shift+Right move right
 
 # split in vertical orientation
 #bindsym $mod+v split v
-bindsym $mod+s mode "split [h]orizontal [v]ertical"
-mode "split [h]orizontal [v]ertical" {
-  bindsym h split v, mode "default"
-  bindsym v split h, mode "default"
-  bindsym Escape mode "default"
-  bindsym Return mode "default"
-}
+# bindsym $mod+s mode "split [h]orizontal [v]ertical"
+# mode "split [h]orizontal [v]ertical" {
+#   bindsym h split v, mode "default"
+#   bindsym v split h, mode "default"
+#   bindsym Escape mode "default"
+#   bindsym Return mode "default"
+# }
 
 
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+m fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
@@ -276,17 +278,8 @@ bar {
 # keybinding to lock screen
 bindsym $mod+x exec "i3lock -c 000000"
 
-mode "exit: [l]ogout, s[u]spend, [r]eboot, [s]hutdown" {
-
-  bindsym l exec i3-msg exit, mode "default"
-  bindsym r exec systemctl reboot, mode "default"
-  bindsym s exec systemctl poweroff, mode "default"
-  bindsym u exec systemctl suspend, mode "default"
-  bindsym Escape mode "default"
-  bindsym Return mode "default"
-}
-
-bindsym $mod+shift+x mode "exit: [l]ogout, s[u]spend, [r]eboot, [s]hutdown"
+# keybinding for rofi power menu
+bindsym $mod+p exec ~/Scripts/rofi/rofi-power.sh
 
 # change focus
 bindsym $mod+h focus left
@@ -312,7 +305,8 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+plus floating toggle
 bindsym $mod+n exec --no-startup-id i3-sensible-terminal -e vim ~/notes.txt
 
-#exec_always --no-startup-id sh ~/.fehbg
+exec_always --no-startup-id "$HOME/Scripts/set-wallpaper.sh"
+
 #bindsym $mod+shift+x exec i3-sensible-terminal -e 'shutdown now'
 # auto lock the screen
 
@@ -320,23 +314,27 @@ bindsym $mod+n exec --no-startup-id i3-sensible-terminal -e vim ~/notes.txt
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # bindsym $mod+i exec flameshot gui
 
-set $mode_launcher Launcher: [f]irefox, [c]hrome, [s]kype, [C]alibre, [t]hunar, [a]ndroid-studio, [A]nki, [r]anger, [z]athura, [v]irtual box, [i]nsomnia, [o]bsidian, [e]mail
+set $mode_launcher Launcher: [f]irefox, [c]hrome, [s]kype, [C]alibre, [t]hunar, [a]ndroid-studio, [A]nki, [r]anger, [z]athura, [v]irtual box, [i]nsomnia, [o]bsidian, [e]mail, [l]mux
+
+for_window [class="Xfce4-terminal" title="Floaty"] floating enable, resize set 1200 700, move position center
+
 
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher"{
-    bindsym a exec android-studio
-    bindsym A exec anki
-    bindsym e exec --no-startup-id i3-msg 'exec xfce4-terminal -e aerc'
-    bindsym c exec google-chrome
-    bindsym C exec calibre
-    bindsym f exec firefox
-    bindsym o exec obsidian
-    bindsym t exec thunar
-    bindsym z exec zathura
-    bindsym v exec virtualbox
-    bindsym i exec insomnia
-    bindsym s exec skypeforlinux
-    bindsym r exec --no-startup-id i3-msg 'exec xfce4-terminal -e ranger'
+    bindsym a exec android-studio ; mode "default"
+    bindsym A exec anki ; mode "default"
+    bindsym e exec --no-startup-id i3-msg 'exec xfce4-terminal -e aerc' ; mode "default"
+    bindsym c exec google-chrome ; mode "default"
+    bindsym C exec calibre ; mode "default"
+    bindsym f exec firefox ; mode "default"
+    bindsym o exec obsidian ; mode "default"
+    bindsym t exec thunar ; mode "default"
+    bindsym z exec zathura ; mode "default"
+    bindsym v exec virtualbox ; mode "default"
+    bindsym i exec insomnia ; mode "default"
+    bindsym s exec skypeforlinux ; mode "default"
+    bindsym l exec --no-startup-id xfce4-terminal --title="Floaty" --command="$HOME/Scripts/tmux.sh"; mode "default"
+    bindsym r exec --no-startup-id i3-msg 'exec xfce4-terminal -e ranger' ; mode "default"
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
@@ -350,6 +348,19 @@ mode "$temp_mode"{
     bindsym Return mode "default"
 }
 
+set $find_mode find: [d]irectory, [/]root [f]ile, [.]dotfiles, [o]ld files, [t]mux sessions
+bindsym $mod+f mode "$find_mode"
+mode "$find_mode"{
+    bindsym d exec ~/Scripts/find/dir.sh home; mode "default"
+    bindsym f exec ~/Scripts/find/file.sh; mode "default"
+    bindsym t exec ~/Scripts/find/tmux.sh; mode "default"
+    bindsym o exec ~/Scripts/find/old-files.sh; mode "default"
+    bindsym slash exec ~/Scripts/find/dir.sh root; mode "default"
+    bindsym period exec ~/Scripts/find/dotfiles.sh; mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
 
 # set $window_edit Windows: [s]wap
 # bindsym $mod+i mode "$window_edit
@@ -359,7 +370,6 @@ mode "$temp_mode"{
 #     bindsym Return mode "default"
 # }
 
-bindsym --release $mod+p exec xdotool type --clearmodifiers 'xclip -selection c-out'
 set $utility_launcher Utilities: [h]ide, [s]shot, [w]indow, [r]un, [i]talian, [e]nglish, [x]kill, [k]eys, [f]av-websites
 
 bindsym $mod+u mode "$utility_launcher"
@@ -369,11 +379,12 @@ mode "$utility_launcher"{
     bindsym i exec setxkbmap it; mode "default"
     bindsym e exec setxkbmap gb; mode "default"
     bindsym h exec ~/Scripts/savei3.py; mode "default"
+    bindsym g exec ~/Scripts/test-google.sh; mode "default"
     bindsym x exec xkill; mode "default"
     bindsym w exec rofi -show window; mode "default"
-    bindsym f exec awk -F'|' '{print $1}' ~/Syncthing/rofi/websites t| rofi -dmenu -p "Choose a website" | xargs -r -I {} grep "^{}|" ~/Syncthing/rofi/websites | awk -F'|' '{print $2}' | xargs -r firefox --new-window; mode "default"
-    bindsym r exec rofi -show run; mode "default"
-    bindsym k exec cat ~/Syncthing/rofi/text | rofi -dmenu | xargs -I {} bash -c 'echo -n "{}" | xclip -selection clipboard && xdotool key Ctrl+v'; mode "default"
+    bindsym f exec awk -F'|' '{print $1}' ~/Syncthing/rofi/websites t| rofi -dmenu -auto-select -p "Choose a website" | xargs -r -I {} grep "^{}|" ~/Syncthing/rofi/websites | awk -F'|' '{print $2}' | xargs -r firefox --new-window; mode "default"
+    bindsym r exec rofi -show run -auto-select; mode "default"
+    bindsym k exec cat ~/Syncthing/rofi/text | rofi -dmenu -auto-select| xargs -I {} bash -c 'echo -n "{}" | xclip -selection clipboard && xdotool key Ctrl+v'; mode "default"
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
@@ -381,7 +392,7 @@ mode "$utility_launcher"{
 
 ##
 # move floating windows with keys
-bindsym $mod+m mode "move" focus floating
+# bindsym $mod+m mode "move" focus floating
 mode "move" {
     bindsym Left  move left 200px
     bindsym Down  move down 200px
@@ -494,3 +505,15 @@ bindsym ctrl+$mod+l workspace next
 
 bindsym $mod+i exec /home/lewis/Scripts/rofi/rofi-main.sh
 
+set $searchmode search: [c]hatgpt, [g]oogle, [y]outube, [e]bay, [a]mazon, g[i]thub
+bindsym $mod+s mode "$searchmode"
+mode "$searchmode" {
+    bindsym c exec /home/lewis/Scripts/search/chatgpt.sh; mode "default"
+    bindsym y exec /home/lewis/Scripts/search/youtube.sh; mode "default"
+    bindsym g exec /home/lewis/Scripts/search/google.sh; mode "default"
+    bindsym e exec /home/lewis/Scripts/search/ebay.sh; mode "default"
+    bindsym a exec /home/lewis/Scripts/search/amazon.sh; mode "default"
+    bindsym i exec /home/lewis/Scripts/search/github.sh; mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
