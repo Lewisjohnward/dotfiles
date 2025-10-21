@@ -1,0 +1,20 @@
+# Aerc accounts configuration template
+# Copy this file to accounts.conf and fill in your actual credentials
+#
+# For more information, see: man aerc-accounts
+
+[Personal]
+source = imaps://username@example.com@imap.example.com:993
+outgoing = smtps://username@example.com:password@smtp.example.com:465
+default = INBOX
+from = Your Name <username@example.com>
+copy-to = Sent
+# Optional: specify folders
+# folders = INBOX,Sent,Drafts,Trash
+
+[Work]
+source = imaps://work.user@company.com@imap.company.com:993
+outgoing = smtps://work.user@company.com:password@smtp.company.com:465
+default = INBOX
+from = Your Name <work.user@company.com>
+copy-to = Sent
