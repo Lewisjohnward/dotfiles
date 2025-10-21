@@ -506,7 +506,7 @@ bindsym ctrl+$mod+l workspace next
 
 bindsym $mod+i exec /home/lewis/Scripts/rofi/rofi-main.sh
 
-set $searchmode search: [c]hatgpt, [g]oogle, [y]outube, [e]bay, [a]mazon, g[i]thub
+set $searchmode search: [c]hatgpt, [g]oogle, [y]outube, [e]bay, [a]mazon, g[i]thub, [r]eddit
 bindsym $mod+s mode "$searchmode"
 mode "$searchmode" {
     bindsym c exec /home/lewis/Scripts/search/chatgpt.sh; mode "default"
@@ -515,6 +515,7 @@ mode "$searchmode" {
     bindsym e exec /home/lewis/Scripts/search/ebay.sh; mode "default"
     bindsym a exec /home/lewis/Scripts/search/amazon.sh; mode "default"
     bindsym i exec /home/lewis/Scripts/search/github.sh; mode "default"
+    bindsym r exec /home/lewis/Scripts/search/reddit.sh; mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
