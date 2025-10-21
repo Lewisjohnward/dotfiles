@@ -1,0 +1,8 @@
+program_options:
+  automount: true
+  notify_command: "/home/lewis/Scripts/media-center/media-center-start.sh {event} {id_uuid}"
+  notify: false
+
+device_config:
+  - id_uuid: "08E8EEABE8EE95EA"
+    automount: true
