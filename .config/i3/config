@@ -303,7 +303,7 @@ bindsym $mod+q kill
 #bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 bindsym $mod+plus floating toggle
-bindsym $mod+n exec --no-startup-id i3-sensible-terminal -e vim ~/notes.txt
+# bindsym $mod+n exec --no-startup-id i3-sensible-terminal -e vim ~/notes.txt
 
 exec_always --no-startup-id "$HOME/Scripts/set-wallpaper.sh"
 
@@ -533,3 +533,6 @@ mode "$dockermode" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+# SSH quick launcher
+bindsym $mod+n exec /home/lewis/Scripts/rofi/rofi-ssh.sh
