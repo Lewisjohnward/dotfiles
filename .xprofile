@@ -1,0 +1,2 @@
+xrdb -merge ~/.Xresources-4k
+export PATH=$HOME/Scripts/wrappers:$PATH
