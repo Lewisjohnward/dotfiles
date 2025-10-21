@@ -536,3 +536,6 @@ mode "$dockermode" {
 
 # SSH quick launcher
 bindsym $mod+n exec /home/lewis/Scripts/rofi/rofi-ssh.sh
+
+# Git repos quick launcher
+bindsym $mod+g exec /home/lewis/Scripts/rofi/rofi-git-repos.sh
