@@ -5,6 +5,7 @@ clear && fastfetch
 export EDITOR="nvim"
 export VISUAL="nvim"
 alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker'
+alias w='curl wttr.in/harlow'
 
 alias grh='git reset HEAD~1'
 
@@ -41,6 +42,7 @@ g() {
 	xdg-open "http://www.google.com/search?q=$search"
 }
 
+alias cf='cat $(fzf)'
 alias vs="vagrant status"
 
 #google() {
@@ -218,6 +220,7 @@ alias apt-list-installedbyme='comm -23 <(apt-mark showmanual | sort -u) <(gzip -
 alias sys_update='sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get autoremove -y && sudo apt-get autoclean -y'
 alias gpom='git push origin main'
 alias gss='git status'
+alias gc='git commit -m'
 alias gaa='git add .'
 alias gf='git fetch'
 alias gd='git diff'
@@ -238,13 +241,13 @@ alias gcm='git checkout main'
 
 
 ## Find file from home
-alias ff='$(fdfind . ~ --hidden | fzf)'
+alias fd='cd $(fdfind . ~ --type d --hidden --max-depth 3 --exclude ".git" | fzf)'
 ## Find anything from root
 # alias rf='$(fdfind . / --hidden | fzf)'
 ## find directory from home
 # alias df='cd $(fdfind . ~ --type directory --hidden | fzf)'
 ## Find dir from root
-alias rf='cd $(fdfind . / --type directory --hidden | fzf)'
+alias fr='cd $(fdfind . / --type directory --hidden | fzf)'
 # alias af='$(cat ~/.bashrc | grep "^alias" | grep -v "#" | sed "s/alias //"| fzf)'
 
 # alias bopen='cd $books_dir; bn="$(find . -type f | fzf)"; zathura "${bn}" & disown -h'
@@ -388,10 +391,6 @@ alias grpo='git remote prune origin'
 # sudo docker image history <image ID> - displays history when creating image
 # sudo docker container commit - turns container into image
 # sudo docker image tag <ID> <repo>
-
-gc() {
-	git checkout "$1"
-}
 
 gbd() {
 	git branch -d "$1"
