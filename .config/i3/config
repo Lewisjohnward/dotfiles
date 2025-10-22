@@ -545,3 +545,61 @@ bindsym $mod+g exec /home/lewis/Scripts/rofi/rofi-git-repos.sh
 
 # Clipboard manager quick launcher
 bindsym $mod+c exec /home/lewis/Scripts/rofi/rofi-clipboard.sh
+
+# System settings quick launcher
+bindsym $mod+Shift+s exec /home/lewis/Scripts/rofi/rofi-system-settings.sh
+
+# Audio control mode
+set $audiomode audio: [m]usic [s]ink [v]olume
+bindsym $mod+a mode "$audiomode"
+mode "$audiomode" {
+    bindsym m mode "$musicmode"
+    bindsym s exec /home/lewis/Scripts/rofi/rofi-audio-sink-switcher.sh ; mode "default"
+    bindsym v mode "$volumemode"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Volume control mode
+set $volumemode volume: [j/k]adjust [m]ute [0-9]set%
+mode "$volumemode" {
+    bindsym j exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym k exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym m exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym 0 exec pactl set-sink-volume @DEFAULT_SINK@ 0%
+    bindsym 1 exec pactl set-sink-volume @DEFAULT_SINK@ 10%
+    bindsym 2 exec pactl set-sink-volume @DEFAULT_SINK@ 20%
+    bindsym 3 exec pactl set-sink-volume @DEFAULT_SINK@ 30%
+    bindsym 4 exec pactl set-sink-volume @DEFAULT_SINK@ 40%
+    bindsym 5 exec pactl set-sink-volume @DEFAULT_SINK@ 50%
+    bindsym 6 exec pactl set-sink-volume @DEFAULT_SINK@ 60%
+    bindsym 7 exec pactl set-sink-volume @DEFAULT_SINK@ 70%
+    bindsym 8 exec pactl set-sink-volume @DEFAULT_SINK@ 80%
+    bindsym 9 exec pactl set-sink-volume @DEFAULT_SINK@ 90%
+    bindsym Shift+0 exec pactl set-sink-volume @DEFAULT_SINK@ 100%
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Music control mode (MPD)
+set $musicmode  music: [space]toggle [n]ext [p]rev [s]top [r]epeat [z]random, [j/k]volume [h/l]seek [u]pdate, [v]iew
+mode "$musicmode" {
+    bindsym space exec mpc toggle
+    bindsym n exec mpc next
+    bindsym v exec --no-startup-id i3-msg 'exec xfce4-terminal -e view' ; mode "default"
+    bindsym p exec mpc prev
+    bindsym s exec mpc stop
+    bindsym r exec mpc repeat
+    bindsym z exec mpc random
+    bindsym u exec mpc update
+    bindsym k exec mpc volume +5
+    bindsym j exec mpc volume -5
+    bindsym h exec mpc seek -1:00
+    bindsym l exec mpc seek +1:00
+    bindsym Shift+h exec mpc seek -0:10
+    bindsym Shift+l exec mpc seek +0:10
+    bindsym Left exec mpc seek -1:00
+    bindsym Right exec mpc seek +1:00
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
