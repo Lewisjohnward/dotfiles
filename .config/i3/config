@@ -351,13 +351,14 @@ mode "$temp_mode"{
     bindsym Return mode "default"
 }
 
-set $find_mode find: [d]irectory, [/]root [f]ile, [.]dotfiles, [o]ld files, [t]mux sessions
+set $find_mode find: [d]irectory, [/]root [f]ile, [.]dotfiles, [o]ld files, [t]mux sessions, [g]it repos
 bindsym $mod+f mode "$find_mode"
 mode "$find_mode"{
     bindsym d exec ~/Scripts/find/dir.sh home; mode "default"
     bindsym f exec ~/Scripts/find/file.sh; mode "default"
     bindsym t exec ~/Scripts/find/tmux.sh; mode "default"
     bindsym o exec ~/Scripts/find/old-files.sh; mode "default"
+    bindsym g exec ~/Scripts/find/git-repos.sh; mode "default"
     bindsym slash exec ~/Scripts/find/dir.sh root; mode "default"
     bindsym period exec ~/Scripts/find/dotfiles.sh; mode "default"
     bindsym Escape mode "default"
