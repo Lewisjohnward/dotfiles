@@ -64,6 +64,8 @@ bindsym XF86MonBrightnessDown exec --no-startup-id exec brightnessctl set 2%-
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+exec_always --no-startup-id autotiling
+exec --no-startup-id picom
 # Start greenclip daemon for clipboard management
 exec --no-startup-id greenclip daemon
 
