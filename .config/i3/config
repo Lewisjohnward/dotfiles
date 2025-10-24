@@ -566,7 +566,7 @@ mode "$musicmode" {
 set $timermode timer: [s]et [p]ause/resume [x]stop
 bindsym $mod+ctrl+t mode "$timermode"
 mode "$timermode" {
-    bindsye s exec ~/.config/polybar/scripts/timer-set.sh, mode "default"
+    bindsym s exec ~/.config/polybar/scripts/timer-set.sh, mode "default"
     bindsym p exec --no-startup-id ~/.config/polybar/scripts/timer-toggle.sh
     bindsym x exec --no-startup-id bash -c 'echo stopped > /tmp/polybar_timer_state && echo 0 > /tmp/polybar_timer_endtime && rm -f /tmp/polybar_timer_pausetime && notify-send Timer Stopped', mode "default"
     bindsym Return mode "default"
