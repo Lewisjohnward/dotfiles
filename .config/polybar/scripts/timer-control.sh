@@ -54,7 +54,7 @@ else
 fi
 
 # Show rofi menu
-choice=$(echo -e "$options" | rofi -dmenu -i -p "Timer ($(format_time $remaining)):")
+choice=$(echo -e "$options" | rofi -dmenu -i -p "Timer ($(format_time $remaining)):" -theme ~/.config/rofi/themes/timer.rasi)
 
 case "$choice" in
     "▶ Resume")
@@ -81,7 +81,7 @@ case "$choice" in
         rm -f "$PAUSE_TIME_FILE"
         ;;
     "⏱ Set Timer"|"⏱ Set New Timer")
-        custom=$(echo "" | rofi -dmenu -p "Enter minutes:")
+        custom=$(echo "" | rofi -dmenu -p "Enter minutes:" -theme ~/.config/rofi/themes/timer-input.rasi)
         if [[ "$custom" =~ ^[0-9]+$ ]] && [ "$custom" -gt 0 ]; then
             seconds=$((custom * 60))
             current_time=$(date +%s)
