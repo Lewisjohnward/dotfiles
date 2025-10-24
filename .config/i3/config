@@ -65,7 +65,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id exec brightnessctl set 2%-
 exec --no-startup-id nm-applet
 
 exec_always --no-startup-id autotiling
-exec --no-startup-id picom
+exec --no-startup-id picom --experimental-backends
 # Start greenclip daemon for clipboard management
 exec --no-startup-id greenclip daemon
 
