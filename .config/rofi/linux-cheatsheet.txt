@@ -1,2 +1,10 @@
-yt-dlp -f bestaudio URL
-yt-dlp -x --audio-format mp3 -o "%(title)s.%(ext)s" URL
+youtube yt-dlp download best audio | yt-dlp -f bestaudio URL
+youtube yt-dlp download audio rename | yt-dlp -x --audio-format mp3 -o "%(title)s.%(ext)s" URL
+List files | ls -lah
+Find files | find . -name "*.txt"
+Check disk usage | df -h
+Check memory | free -h
+Process list | ps aux
+Kill process | kill -9 <PID>
+Network connections | netstat -tulpn
+System info | uname -a
