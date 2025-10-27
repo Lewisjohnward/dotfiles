@@ -243,6 +243,11 @@ alias gcm='git checkout main'
 ## Find file from home
 alias fd='cd $(fdfind . ~ --type d --hidden --max-depth 5 --exclude ".git" | fzf)'
 alias ff='nvim $(fdfind . --type f --hidden --max-depth 5 --exclude ".git" | fzf)'
+alias fft='npm run test "$(fdfind --glob "*test*" . --type f --max-depth 10 --exclude ".git" | fzf)"'
+
+
+
+
 ## Find anything from root
 # alias rf='$(fdfind . / --hidden | fzf)'
 ## find directory from home
