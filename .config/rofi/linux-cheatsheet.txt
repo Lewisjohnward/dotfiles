@@ -1,10 +1,25 @@
 youtube yt-dlp download best audio | yt-dlp -f bestaudio URL
-youtube yt-dlp download audio rename | yt-dlp -x --audio-format mp3 -o "%(title)s.%(ext)s" URL
+youtube yt-dlp download audio rename| yt-dlp -x --audio-format mp3 -o "%(title)s.%(ext)s" URL
 List files | ls -lah
 Find files | find . -name "*.txt"
-Check disk usage | df -h
+Check disk usage in human readable format | df -h
+Check disk usage sorted by size 1 deep | du -h --max-depth=1 | sort -hr
 Check memory | free -h
 Process list | ps aux
 Kill process | kill -9 <PID>
 Network connections | netstat -tulpn
 System info | uname -a
+tmux rename session | tmux rename-session -t OLD NEW
+tmux rename session keyboard | ctrl+t $
+tmux list sessions | tmux ls
+tmux attach to session | tmux attach -t NAME
+ranger sort by size | o s
+aero open | o
+aero next / prev | j/k
+delete | :D
+linux set default browser | xdg-settings set default-web-browser firefox_firefox.desktop
+linux check default browser | xdg-settings get default-web-browser
+list fonts | fc-list
+grep a word insensitive | grep -i nerd
+
+
