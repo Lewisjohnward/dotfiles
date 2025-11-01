@@ -546,7 +546,7 @@ set $musicmode  music: [space]toggle [n]ext [p]rev [s]top [r]epeat [z]random, [j
 mode "$musicmode" {
     bindsym space exec mpc toggle
     bindsym n exec mpc next
-    bindsym v exec --no-startup-id i3-msg 'exec xfce4-terminal -e view' ; mode "default"
+    bindsym v exec --no-startup-id i3-msg 'exec xfce4-terminal -e ncmpcpp' ; mode "default"
     bindsym p exec mpc prev
     bindsym s exec mpc stop
     bindsym r exec mpc repeat
