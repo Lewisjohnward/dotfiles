@@ -299,7 +299,7 @@ mode "$mode_launcher"{
 }
 
 set $temp_mode Screen temperature: [i]ncrease, [d]ecrease
-bindsym $mod+t mode "$temp_mode"
+bindsym $mod+Shift+t mode "$temp_mode"
 mode "$temp_mode"{
     bindsym i exec ~/Scripts/Redshift/inc_temperature.sh
     bindsym d exec ~/Scripts/Redshift/dec_temperature.sh
@@ -496,7 +496,6 @@ mode "$dockermode" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
 # SSH quick launcher
 bindsym $mod+n exec /home/lewis/Scripts/rofi/rofi-ssh.sh
 
@@ -505,6 +504,17 @@ bindsym $mod+g exec /home/lewis/Scripts/rofi/rofi-git-repos.sh
 
 # Clipboard manager quick launcher
 bindsym $mod+c exec /home/lewis/Scripts/rofi/rofi-clipboard.sh
+
+# Taskwarrior mode
+set $taskmode task: [a]dd, [l]ist, [p]rojects
+bindsym $mod+t mode "$taskmode"
+mode "$taskmode" {
+    bindsym a exec /home/lewis/Scripts/rofi/rofi-taskwarrior-add.sh; mode "default"
+    bindsym l exec /home/lewis/Scripts/rofi/rofi-taskwarrior-list.sh; mode "default"
+    bindsym p exec /home/lewis/Scripts/rofi/rofi-taskwarrior-projects.sh; mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
 
 # System settings quick launcher
 bindsym $mod+Shift+s exec /home/lewis/Scripts/rofi/rofi-system-settings.sh
@@ -542,13 +552,13 @@ mode "$volumemode" {
 }
 
 # Music control mode (MPD)
-set $musicmode  music: [space]toggle [n]ext [p]rev [s]top [r]epeat [z]random, [j/k]volume [h/l]seek [u]pdate, [v]iew
+set $musicmode  music: [space]toggle [n]ext [p]rev [s]eek [r]epeat [z]random, [j/k]volume [h/l]seek [u]pdate, [v]iew
 mode "$musicmode" {
     bindsym space exec mpc toggle
     bindsym n exec mpc next
     bindsym v exec --no-startup-id i3-msg 'exec xfce4-terminal -e ncmpcpp' ; mode "default"
     bindsym p exec mpc prev
-    bindsym s exec mpc stop
+    bindsym s exec --no-startup-id ~/Scripts/mpc-seek-rofi.sh
     bindsym r exec mpc repeat
     bindsym z exec mpc random
     bindsym u exec mpc update
