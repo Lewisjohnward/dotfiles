@@ -38,7 +38,9 @@ if [ "$state" = "running" ]; then
     remaining=$((end_time - current_time))
     
     if [ "$remaining" -gt 0 ]; then
-        echo " $(format_time $remaining)"
+        # Format end time as HH:MM
+        end_time_formatted=$(date -d "@$end_time" +"%H:%M")
+        echo " $(format_time $remaining)|$end_time_formatted"
     else
         # Timer finished
         echo "stopped" > "$STATE_FILE"
@@ -51,7 +53,11 @@ elif [ "$state" = "paused" ]; then
     PAUSE_TIME_FILE="/tmp/polybar_timer_pausetime"
     if [ -f "$PAUSE_TIME_FILE" ]; then
         paused_remaining=$(cat "$PAUSE_TIME_FILE")
-        echo "%{F#FFA500} $(format_time $paused_remaining)%{F-}"
+        # Calculate what the end time would be if resumed now
+        current_time=$(date +%s)
+        projected_end_time=$((current_time + paused_remaining))
+        end_time_formatted=$(date -d "@$projected_end_time" +"%H:%M")
+        echo "%{F#FFA500} $(format_time $paused_remaining)|$end_time_formatted%{F-}"
     else
         echo "%{F#FFA500} --:---%{F-}"
     fi
