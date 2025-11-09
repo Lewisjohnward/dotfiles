@@ -13,3 +13,24 @@ console.assert() | console.assert(condition, 'message')
 console.count() | console.count('label')
 console.clear() | console.clear()
 screen.debug() | screen.debug()
+turn off animation transition | transiton-none animate-none
+force off animation transition | !transition-none !animate-none !duration-0
+promise - wait time | new Promise(resolve => setTimeout(resolve, 1000))
+test - expect has assertions | expect.hasAssertions()
+test - render component | screen.render(<C />)
+test - mock time | vi.setSystemTime(new Date("2025-08-15T12:00:00.000Z"));
+test - sel- sync throw on no match | screen.getByText("text")
+test - sel- sync ret null on no match| screen.queryByText("text")
+test - sel- async ret null on no match| await screen.findByText("text")
+test - sel | await screen.findByText("text")
+test - sel | await screen.findByText("text")
+test - find button | screen.getByRole('button', { name: /submit/i })
+test - modal | const modal = screen.queryByText(/are you sure/i) expect(modal).toBeNull()
+test - debug | screen.debug()
+test - debug component | screen.debug(comp)
+test - press escape key | await user.keyboard("{Escape>}");
+test - hold ctrl key down | await user.keyboard("{Control>}");
+test - hold ctrl key release | await user.keyboard("{/Control>}");
+test - force fail a test | expect(false).toBe(true);
+react - on key down | onKeyDown={(e) => console.log("key down", e)}
+react - make focusable tab index | tabIndex={0}

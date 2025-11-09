@@ -10,6 +10,8 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 # exec --no-startup-id ~/Scripts/hdmi-setup.sh
+exec_always --no-startup-id xfce4-terminal -e bash -c 'export BW_SESSION=$(bw unlock --raw) && echo "BW_SESSION set"; sleep infinity'
+
 
 include display.conf
 set $mod Mod4
@@ -63,6 +65,8 @@ bindsym XF86MonBrightnessDown exec --no-startup-id exec brightnessctl set 2%-
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+# start music player daemon
+exec --no-startup-id mpd
 
 exec_always --no-startup-id autotiling
 exec --no-startup-id picom --experimental-backends
@@ -275,7 +279,7 @@ exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 
 set $mode_launcher Launcher: [f]irefox, [c]hrome, [s]kype, [C]alibre, [t]hunar, [a]ndroid-studio, [A]nki, [r]anger, [z]athura, [v]irtual box, [i]nsomnia, [o]bsidian, [e]mail, [l]mux
 
-for_window [class="Xfce4-terminal" title="Floaty"] floating enable, resize set 1200 700, move position center
+for_window [class="Xfce4-terminal" title="Floaty"] floating enable, resize set 1600 1000, move position center
 
 
 bindsym $mod+o mode "$mode_launcher"
@@ -330,7 +334,7 @@ mode "$find_mode"{
 #     bindsym Return mode "default"
 # }
 
-set $utility_launcher Utilities: [h]ide, [s]shot, [w]indow, [r]un, [i]talian, [e]nglish, [x]kill, [k]eys, [f]av-websites, [I]cons, [E]mojis, [j]s-cheat, [l]inux
+set $utility_launcher Utilities: [h]ide, [s]shot, [w]indow, [r]un, [i]talian, [e]nglish, [k]eys, [f]av-websites, [I]cons, [E]mojis, [j]s-cheat, [l]inux, [p]assword
 
 bindsym $mod+u mode "$utility_launcher"
 mode "$utility_launcher"{
@@ -340,9 +344,9 @@ mode "$utility_launcher"{
     bindsym e exec setxkbmap gb; mode "default"
     bindsym h exec ~/Scripts/savei3.py; mode "default"
     bindsym g exec ~/Scripts/test-google.sh; mode "default"
-    bindsym x exec xkill; mode "default"
     bindsym w exec rofi -show window; mode "default"
     bindsym f exec ~/Scripts/rofi/rofi-websites.sh; mode "default"
+    bindsym p exec ~/Scripts/password.sh; mode "default"
     bindsym r exec rofi -show run -auto-select; mode "default"
     bindsym k exec cat ~/Syncthing/rofi/text.txt | rofi -dmenu -auto-select| xargs -I {} bash -c 'echo -n "{}" | xclip -selection clipboard && xdotool key Ctrl+v'; mode "default"
     bindsym j exec ~/Scripts/rofi/rofi-js-cheatsheet.sh; mode "default"
@@ -556,14 +560,14 @@ set $musicmode  music: [space]toggle [n]ext [p]rev [s]eek [r]epeat [z]random, [j
 mode "$musicmode" {
     bindsym space exec mpc toggle
     bindsym n exec mpc next
-    bindsym v exec --no-startup-id i3-msg 'exec xfce4-terminal -e ncmpcpp' ; mode "default"
+    bindsym v exec --no-startup-id xfce4-terminal --title="Floaty" -e ncmpcpp ; mode "default"
     bindsym p exec mpc prev
     bindsym s exec --no-startup-id ~/Scripts/mpc-seek-rofi.sh
     bindsym r exec mpc repeat
     bindsym z exec mpc random
     bindsym u exec mpc update
-    bindsym k exec mpc volume +5
-    bindsym j exec mpc volume -5
+    bindsym k exec --no-startup-id ~/Scripts/mpc-volume.sh +5
+    bindsym j exec --no-startup-id ~/Scripts/mpc-volume.sh -5
     bindsym h exec mpc seek -1:00
     bindsym l exec mpc seek +1:00
     bindsym Shift+h exec mpc seek -0:10

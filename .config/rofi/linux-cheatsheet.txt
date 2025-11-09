@@ -21,5 +21,40 @@ linux set default browser | xdg-settings set default-web-browser firefox_firefox
 linux check default browser | xdg-settings get default-web-browser
 list fonts | fc-list
 grep a word insensitive | grep -i nerd
+music ncmpcpp delete from playlist | d
+task list all projects | task projects
+task list all tags | task tags
+task list tasks from a specific project | task project:setup
+task list tasks with a tag | task +family
+task add a task | task add buy milk
+task list all tasks | task list
+task delete a task | task 1 delete
+task add high priority task | task add pay bills priorty:H
+task add task with tag | task add call mom +family
+task add task with to a project | task add finish report project:work due:tomorrow
+task add already created task to a project | task 1 modify project:name
+git display color commit tree | git log --graph --oneline --decorate --all --color
+git stash with message | git stash -m "temp"
+git stash list stashes | git stash list
+git stash push | git stash push
+git stash pop | git stash pop
+git stash list what is in most recent stash | git stash show stash@{}
+git force push with lease | git push origin B --force-with-lease
+git stash show full patch in most recent stash without applying | git stash show -p stash@{0}
+git stash everything in dir git | stash push -m "temp stash other changes" -- ../frontend src
+timew start tracking | timewarrior start coding
+timew stop tracking | timewarrior stop coding
+timew check status | timewarrior
+timew track a past task | timewarrior 2h coding
+timew track a past task | timewarrior track 10:00-12:00 coding
+timew summary for today | timewarrior summary today
+timew summary for week | timewarrior summary :week
+timew list of intervals | timewarrior info
+surfingkeys yank the link of an url | ya
+untar into dir | tar -xf filename.tar.xz -C /path/to/destination
+ln -s /path/to/source ~/.local/path/to/dest
+
+
+
 
 
