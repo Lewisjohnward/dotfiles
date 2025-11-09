@@ -69,7 +69,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id mpd
 
 exec_always --no-startup-id autotiling
-exec --no-startup-id picom --experimental-backends
+exec_always --no-startup-id picom --experimental-backends
 # Start greenclip daemon for clipboard management
 exec --no-startup-id greenclip daemon
 
@@ -474,7 +474,7 @@ bindsym ctrl+$mod+l workspace next
 
 bindsym $mod+i exec /home/lewis/Scripts/rofi/rofi-main.sh
 
-set $searchmode search: [c]hatgpt, [g]oogle, [y]outube, [e]bay, [a]mazon, g[i]thub, [r]eddit
+set $searchmode search: [c]hatgpt, [g]oogle, [y]outube, [e]bay, [a]mazon, g[i]thub, [r]eddit, [w]ikipedia
 bindsym $mod+s mode "$searchmode"
 mode "$searchmode" {
     bindsym c exec /home/lewis/Scripts/search/chatgpt.sh; mode "default"
@@ -484,6 +484,7 @@ mode "$searchmode" {
     bindsym a exec /home/lewis/Scripts/search/amazon.sh; mode "default"
     bindsym i exec /home/lewis/Scripts/search/github.sh; mode "default"
     bindsym r exec /home/lewis/Scripts/search/reddit.sh; mode "default"
+    bindsym w exec /home/lewis/Scripts/search/wikipedia.sh; mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -574,6 +575,47 @@ mode "$musicmode" {
     bindsym Shift+l exec mpc seek +0:10
     bindsym Left exec mpc seek -1:00
     bindsym Right exec mpc seek +1:00
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# System control mode
+set $systemmode system: [b]rightness [t]emperature [p]ower
+bindsym $mod+y mode "$systemmode"
+mode "$systemmode" {
+    bindsym b mode "$brightnessmode"
+    bindsym t mode "$temp_mode"
+    bindsym p mode "$powermode"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Brightness control mode
+set $brightnessmode brightness: [j/k]adjust [0-9]set%
+mode "$brightnessmode" {
+    bindsym j exec brightnessctl set 5%-
+    bindsym k exec brightnessctl set +5%
+    bindsym 0 exec brightnessctl set 1%
+    bindsym 1 exec brightnessctl set 10%
+    bindsym 2 exec brightnessctl set 20%
+    bindsym 3 exec brightnessctl set 30%
+    bindsym 4 exec brightnessctl set 40%
+    bindsym 5 exec brightnessctl set 50%
+    bindsym 6 exec brightnessctl set 60%
+    bindsym 7 exec brightnessctl set 70%
+    bindsym 8 exec brightnessctl set 80%
+    bindsym 9 exec brightnessctl set 90%
+    bindsym Shift+0 exec brightnessctl set 100%
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Power control mode
+set $powermode power: [s]uspend [h]utdown [l]ogout
+mode "$powermode" {
+    bindsym s exec systemctl suspend, mode "default"
+    bindsym h exec systemctl poweroff, mode "default"
+    bindsym l exec i3-msg exit, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
