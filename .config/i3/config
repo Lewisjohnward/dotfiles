@@ -251,6 +251,9 @@ bindsym $mod+l focus right
 
 bindsym $mod+q kill
 
+# Kill all windows in current workspace
+bindsym $mod+Shift+ctrl+q exec ~/Scripts/i3-kill-workspace-windows.sh
+
 #exec_always --no-startup-id i3-sensible-terminal -n dropdown -e vim ~/notes.txt
 #for_window [instance="dropdown"] floating enable
 #for_window [instance="dropdown"] resize set 625 400
@@ -302,16 +305,15 @@ mode "$mode_launcher"{
     bindsym Return mode "default"
 }
 
-set $temp_mode Screen temperature: [i]ncrease, [d]ecrease
-bindsym $mod+Shift+t mode "$temp_mode"
+set $temp_mode Screen temperature: [j]ncrease, [k]decrease
 mode "$temp_mode"{
-    bindsym i exec ~/Scripts/Redshift/inc_temperature.sh
-    bindsym d exec ~/Scripts/Redshift/dec_temperature.sh
+    bindsym j exec ~/Scripts/Redshift/inc_temperature.sh
+    bindsym k exec ~/Scripts/Redshift/dec_temperature.sh
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
 
-set $find_mode find: [d]irectory, [/]root [f]ile, [.]dotfiles, [o]ld files, [t]mux sessions, [g]it repos
+set $find_mode find: [d]irectory, [/]root [f]ile, [.]dotfiles, [o]ld files, [t]mux sessions, [g]it repos, [m]arked dirs
 bindsym $mod+f mode "$find_mode"
 mode "$find_mode"{
     bindsym d exec ~/Scripts/find/dir.sh home; mode "default"
@@ -321,6 +323,7 @@ mode "$find_mode"{
     bindsym g exec ~/Scripts/find/git-repos.sh; mode "default"
     bindsym slash exec ~/Scripts/find/dir.sh root; mode "default"
     bindsym period exec ~/Scripts/find/dotfiles.sh; mode "default"
+    bindsym m exec ~/Scripts/find/marked-dirs.sh; mode "default"
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
@@ -334,7 +337,7 @@ mode "$find_mode"{
 #     bindsym Return mode "default"
 # }
 
-set $utility_launcher Utilities: [h]ide, [s]shot, [w]indow, [r]un, [i]talian, [e]nglish, [k]eys, [f]av-websites, [I]cons, [E]mojis, [j]s-cheat, [l]inux, [p]assword
+set $utility_launcher Utilities: [h]ide, [s]shot, [r]un, [i]talian, [e]nglish, [k]eys, [f]av-websites, [I]cons, [E]mojis, [j]s-cheat, [l]inux, [p]assword
 
 bindsym $mod+u mode "$utility_launcher"
 mode "$utility_launcher"{
@@ -344,7 +347,6 @@ mode "$utility_launcher"{
     bindsym e exec setxkbmap gb; mode "default"
     bindsym h exec ~/Scripts/savei3.py; mode "default"
     bindsym g exec ~/Scripts/test-google.sh; mode "default"
-    bindsym w exec rofi -show window; mode "default"
     bindsym f exec ~/Scripts/rofi/rofi-websites.sh; mode "default"
     bindsym p exec ~/Scripts/password.sh; mode "default"
     bindsym r exec rofi -show run -auto-select; mode "default"
@@ -409,19 +411,6 @@ mode "$mode_relocate" {
 #     bindsym Return mode "default"
 #     bindsym Escape mode "default"
 
-# }
-
-# set $utilities "Temp: [i]nc, [d]ec. BT:[c]onnect, [b]isconnect"
-# bindsym $mod+u mode $utilities
-#
-# #Handle screen temperature changing
-# mode $utilities {
-#     bindsym d exec ~/Scripts/dec_temperature.sh
-#     bindsym i exec ~/Scripts/inc_temperature.sh
-#     bindsym c exec ~/Scripts/bluetooth/connect.sh
-#     bindsym b exec ~/Scripts/bluetooth/disconnect.sh
-#     bindsym Return mode "default"
-#     bindsym Escape mode "default"
 # }
 
 mode "$8BitVlc" {
@@ -580,12 +569,21 @@ mode "$musicmode" {
 }
 
 # System control mode
-set $systemmode system: [b]rightness [t]emperature [p]ower
+set $systemmode system: [b]rightness [t]emperature [p]ower [w]indow-manager
 bindsym $mod+y mode "$systemmode"
 mode "$systemmode" {
     bindsym b mode "$brightnessmode"
     bindsym t mode "$temp_mode"
     bindsym p mode "$powermode"
+    bindsym w mode "$windowmanagermode"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Window manager control mode
+set $windowmanagermode window-manager: [q]kill-workspace-windows
+mode "$windowmanagermode" {
+    bindsym q exec ~/Scripts/i3-kill-workspace-windows.sh, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -627,6 +625,32 @@ mode "$timermode" {
     bindsym s exec ~/.config/polybar/scripts/timer-set.sh, mode "default"
     bindsym p exec --no-startup-id ~/.config/polybar/scripts/timer-toggle.sh
     bindsym x exec --no-startup-id bash -c 'echo stopped > /tmp/polybar_timer_state && echo 0 > /tmp/polybar_timer_endtime && rm -f /tmp/polybar_timer_pausetime && notify-send Timer Stopped', mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Environment mode
+set $envmode environment: [d]ev [s]tudy
+set $devmode dev: [b]udgie
+set $studymode study: [i]talian [t]hai
+
+bindsym $mod+e mode "$envmode"
+mode "$envmode" {
+    bindsym d mode "$devmode"
+    bindsym s mode "$studymode"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$devmode" {
+    bindsym b exec ~/Scripts/setup-dev-env-tmux.sh, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$studymode" {
+    bindsym i exec ~/Scripts/studying/italian.sh, mode "default"
+    bindsym t exec ~/Scripts/studying/thai.sh, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
