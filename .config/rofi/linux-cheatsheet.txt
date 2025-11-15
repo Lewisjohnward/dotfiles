@@ -1,5 +1,8 @@
 youtube yt-dlp download best audio | yt-dlp -f bestaudio URL
 youtube yt-dlp download audio rename| yt-dlp -x --audio-format mp3 -o "%(title)s.%(ext)s" URL
+youtube yt-dlp download playist and rename| yt-dlp -o "%(playlist_index)s - %(title)s.%(ext)s" <playlist_url>
+youtube yt-dlp download playlist best under 720p| yt-dlp -f "bv*[height<=720]+ba/best[height<=720]" -o "%(playlist_index)s - %(title)s.%(ext)s" <playlist_url>
+youtube yt-dlp search for 1 result and get the url| yt-dlp "ytsearch1:QUERY" --get-url
 List files | ls -lah
 Find files | find . -name "*.txt"
 Check disk usage in human readable format | df -h
@@ -22,6 +25,12 @@ linux check default browser | xdg-settings get default-web-browser
 list fonts | fc-list
 grep a word insensitive | grep -i nerd
 music ncmpcpp delete from playlist | d
+music ncmpcpp add to playlist | a
+music ncmpcpp filter| ctrl+f 
+music ncmpcpp filter| ctrl+f 
+music ncmpcpp random| z
+music ncmpcpp sort| ctrl+s 
+music ncmpcpp save playlist| S
 task list all projects | task projects
 task list all tags | task tags
 task list tasks from a specific project | task project:setup
@@ -42,6 +51,8 @@ git stash list what is in most recent stash | git stash show stash@{}
 git force push with lease | git push origin B --force-with-lease
 git stash show full patch in most recent stash without applying | git stash show -p stash@{0}
 git stash everything in dir git | stash push -m "temp stash other changes" -- ../frontend src
+rofi example command | echo -e "Posts\nPeople" | rofi -demnu -i -auto-select -p "Msg:" -theme p/t/theme.rasi -theme-str 'window {height: 50%;}' 
+rofi example command with hotkeys | selected=$(task rc.defaultwidth=500 rc.report.list.sort=entry- list 2>/dev/null | tail -n +4 | head -n -2 | rofi -dmenu -p "Tasks [Alt+d: delete | Alt+c: complete]" -kb-custom-1 "Alt+d" -kb-custom-2 "Alt+c" -theme-str 'window {width: 55%;}')
 timew start tracking | timewarrior start coding
 timew stop tracking | timewarrior stop coding
 timew check status | timewarrior
@@ -51,8 +62,13 @@ timew summary for today | timewarrior summary today
 timew summary for week | timewarrior summary :week
 timew list of intervals | timewarrior info
 surfingkeys yank the link of an url | ya
+surfingkeys options for elements | cl
+display os version | lsb_release -a
 untar into dir | tar -xf filename.tar.xz -C /path/to/destination
 ln -s /path/to/source ~/.local/path/to/dest
+display installed packaged | apt list --installed
+display class of window | xprop | grep -i class
+
 
 
 

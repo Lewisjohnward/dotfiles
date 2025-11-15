@@ -85,3 +85,7 @@ vim.api.nvim_set_keymap(
 )
 
 vim.opt.wrap = true
+
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.writebackup = false

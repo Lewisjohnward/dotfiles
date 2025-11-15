@@ -30,6 +30,7 @@ test - debug | screen.debug()
 test - debug component | screen.debug(comp)
 test - press escape key | await user.keyboard("{Escape>}");
 test - hold ctrl key down | await user.keyboard("{Control>}");
+test - how to focus an input and type | await user.type(input, "test")
 test - hold ctrl key release | await user.keyboard("{/Control>}");
 test - force fail a test | expect(false).toBe(true);
 react - on key down | onKeyDown={(e) => console.log("key down", e)}

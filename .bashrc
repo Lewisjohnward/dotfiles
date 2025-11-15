@@ -14,6 +14,8 @@ alias wsb='windsurf ~/.bashrc'
 alias wsi3='windsurf ~/.config/i3/config'
 alias wst='windsurf ~/.tmux.conf'
 
+alias mark='~/Scripts/find/mark-here.sh'
+
 alias penv='source venv/bin/activate'
 alias pdisactivate='deactivate'
 

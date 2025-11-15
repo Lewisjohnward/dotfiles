@@ -68,6 +68,12 @@ exec --no-startup-id nm-applet
 # start music player daemon
 exec --no-startup-id mpd
 
+# Toggle scratchpad Firefox
+# bindsym $mod+Shift+f [con_mark="firefox_scratch"] scratchpad show
+
+# Auto-start scratchpad Firefox on login
+# exec_always --no-startup-id ~/Scripts/firefox_scratchpad.sh
+
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id picom --experimental-backends
 # Start greenclip daemon for clipboard management
@@ -85,9 +91,6 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+space exec i3-sensible-terminal
-
-# kill focused window
-bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
@@ -249,7 +252,8 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-bindsym $mod+q kill
+bindsym $mod+Shift+q kill
+bindsym $mod+q exec ~/Scripts/i3/close_window.sh
 
 # Kill all windows in current workspace
 bindsym $mod+Shift+ctrl+q exec ~/Scripts/i3-kill-workspace-windows.sh
@@ -299,6 +303,7 @@ mode "$mode_launcher"{
     bindsym v exec virtualbox ; mode "default"
     bindsym i exec insomnia ; mode "default"
     bindsym s exec skypeforlinux ; mode "default"
+    bindsym x exec firefox --title="Floaty" --new-window google.com; mode "default"
     bindsym l exec --no-startup-id xfce4-terminal --title="Floaty" --command="$HOME/Scripts/tmux.sh"; mode "default"
     bindsym r exec --no-startup-id i3-msg 'exec xfce4-terminal -e ranger' ; mode "default"
     bindsym Escape mode "default"
@@ -569,13 +574,14 @@ mode "$musicmode" {
 }
 
 # System control mode
-set $systemmode system: [b]rightness [t]emperature [p]ower [w]indow-manager
+set $systemmode system: [b]rightness [t]emperature [p]ower [w]indow-manager [c]onnectivity
 bindsym $mod+y mode "$systemmode"
 mode "$systemmode" {
     bindsym b mode "$brightnessmode"
     bindsym t mode "$temp_mode"
     bindsym p mode "$powermode"
     bindsym w mode "$windowmanagermode"
+    bindsym c mode "$connectivitymode"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -584,6 +590,26 @@ mode "$systemmode" {
 set $windowmanagermode window-manager: [q]kill-workspace-windows
 mode "$windowmanagermode" {
     bindsym q exec ~/Scripts/i3-kill-workspace-windows.sh, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Connectivity control mode
+set $connectivitymode connectivity: [b]luetooth
+mode "$connectivitymode" {
+    bindsym b mode "$bluetoothmode"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Bluetooth control mode
+set $bluetoothmode bluetooth: [t]oggle [s]earch [c]onnect [d]isconnect [f]orget
+mode "$bluetoothmode" {
+    bindsym t exec /home/lewis/Scripts/rofi/bluetooth/toggle.sh, mode "default"
+    bindsym s exec /home/lewis/Scripts/rofi/bluetooth/search.sh, mode "default"
+    bindsym c exec /home/lewis/Scripts/rofi/bluetooth/connect.sh, mode "default"
+    bindsym d exec /home/lewis/Scripts/rofi/bluetooth/disconnect.sh, mode "default"
+    bindsym f exec /home/lewis/Scripts/rofi/bluetooth/forget.sh, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
