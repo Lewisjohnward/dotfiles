@@ -288,7 +288,6 @@ set $mode_launcher Launcher: [f]irefox, [c]hrome, [s]kype, [C]alibre, [t]hunar, 
 
 for_window [class="Xfce4-terminal" title="Floaty"] floating enable, resize set 1600 1000, move position center
 
-
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher"{
     bindsym a exec android-studio ; mode "default"

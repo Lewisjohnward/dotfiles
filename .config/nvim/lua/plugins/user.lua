@@ -7,6 +7,7 @@ return {
 
   -- == Examples of Adding Plugins ==
 
+  -- Add Telescope for better fuzzy finding
   "andweeb/presence.nvim",
   {
     "ray-x/lsp_signature.nvim",

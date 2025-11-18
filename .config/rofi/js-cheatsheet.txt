@@ -13,6 +13,7 @@ console.assert() | console.assert(condition, 'message')
 console.count() | console.count('label')
 console.clear() | console.clear()
 screen.debug() | screen.debug()
+set window title | document.title = "chatgpt"
 turn off animation transition | transiton-none animate-none
 force off animation transition | !transition-none !animate-none !duration-0
 promise - wait time | new Promise(resolve => setTimeout(resolve, 1000))
