@@ -274,6 +274,11 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+plus floating toggle
 # bindsym $mod+n exec --no-startup-id i3-sensible-terminal -e vim ~/notes.txt
 
+# Dropdown terminal scratchpad
+exec_always --no-startup-id "pgrep -f 'xfce4-terminal.*dropdown' || xfce4-terminal --title='dropdown' -e 'tmux new-session -A -s scratch'"
+for_window [title="dropdown"] floating enable, resize set 1400 800, move scratchpad, border pixel 3
+bindsym $mod+semicolon exec --no-startup-id ~/Scripts/i3/toggle-dropdown.sh
+
 exec_always --no-startup-id "$HOME/Scripts/set-wallpaper.sh"
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 
@@ -465,6 +470,10 @@ mode "$8BitAnki" {
 bindsym ctrl+$mod+h workspace prev
 bindsym ctrl+$mod+l workspace next
 
+# Workspace back-and-forth (toggle between current and previous workspace)
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
+
 bindsym $mod+i exec /home/lewis/Scripts/rofi/rofi-main.sh
 
 set $searchmode search: [c]hatgpt, [g]oogle, [y]outube, [e]bay, [a]mazon, g[i]thub, [r]eddit, [w]ikipedia
@@ -573,7 +582,7 @@ mode "$musicmode" {
 }
 
 # System control mode
-set $systemmode system: [b]rightness [t]emperature [p]ower [w]indow-manager [c]onnectivity
+set $systemmode system: [b]rightness [t]emperature [p]ower [w]indow-manager [c]onnectivity [k]ill-process
 bindsym $mod+y mode "$systemmode"
 mode "$systemmode" {
     bindsym b mode "$brightnessmode"
@@ -581,6 +590,7 @@ mode "$systemmode" {
     bindsym p mode "$powermode"
     bindsym w mode "$windowmanagermode"
     bindsym c mode "$connectivitymode"
+    bindsym k exec /home/lewis/CascadeProjects/rofi-process-killer/process-killer.sh, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -594,9 +604,10 @@ mode "$windowmanagermode" {
 }
 
 # Connectivity control mode
-set $connectivitymode connectivity: [b]luetooth
+set $connectivitymode connectivity: [b]luetooth [w]ifi
 mode "$connectivitymode" {
     bindsym b mode "$bluetoothmode"
+    bindsym w mode "$wifimode"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -609,6 +620,17 @@ mode "$bluetoothmode" {
     bindsym c exec /home/lewis/Scripts/rofi/bluetooth/connect.sh, mode "default"
     bindsym d exec /home/lewis/Scripts/rofi/bluetooth/disconnect.sh, mode "default"
     bindsym f exec /home/lewis/Scripts/rofi/bluetooth/forget.sh, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# WiFi control mode
+set $wifimode wifi: [t]oggle [s]can [c]onnect [d]isconnect
+mode "$wifimode" {
+    bindsym t exec /home/lewis/Scripts/rofi/wifi/toggle.sh, mode "default"
+    bindsym s exec /home/lewis/Scripts/rofi/wifi/scan.sh, mode "default"
+    bindsym c exec /home/lewis/Scripts/rofi/wifi/connect.sh, mode "default"
+    bindsym d exec /home/lewis/Scripts/rofi/wifi/disconnect.sh, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }

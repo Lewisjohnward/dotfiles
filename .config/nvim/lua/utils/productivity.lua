@@ -97,9 +97,9 @@ M.insert_todo = function()
     comment_prefix = "//"
   end
   
-  local date = os.date("%Y-%m-%d")
+  local datetime = os.date("%Y-%m-%d %H:%M")
   local username = vim.fn.expand("$USER")
-  local todo = string.format("%s %s TODO(%s %s): ", indent, comment_prefix, username, date)
+  local todo = string.format("%s %s TODO(%s %s): ", indent, comment_prefix, username, datetime)
   
   -- Insert the TODO comment on a new line
   local current_line_num = vim.api.nvim_win_get_cursor(0)[1]

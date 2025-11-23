@@ -108,5 +108,5 @@ vim.keymap.set("v", "<leader>il", productivity.insert_console_log, { noremap = t
 vim.keymap.set("n", "<leader>iL", productivity.fuzzy_console_log, { noremap = true, silent = true, desc = "Fuzzy find variable to log" })
 
 -- Jump list navigation
-vim.keymap.set("n", "<leader>h", "<C-o>", { noremap = true, silent = true, desc = "Go back in jump list" })
-vim.keymap.set("n", "<leader>l", "<C-i>", { noremap = true, silent = true, desc = "Go forward in jump list" })
+vim.keymap.set("n", "<leader>j", "<C-o>", { noremap = true, silent = true, desc = "Go back in jump list" })
+vim.keymap.set("n", "<leader>k", "<C-i>", { noremap = true, silent = true, desc = "Go forward in jump list" })
