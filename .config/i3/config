@@ -316,8 +316,8 @@ mode "$mode_launcher"{
 
 set $temp_mode Screen temperature: [j]ncrease, [k]decrease
 mode "$temp_mode"{
-    bindsym j exec ~/Scripts/Redshift/inc_temperature.sh
-    bindsym k exec ~/Scripts/Redshift/dec_temperature.sh
+    bindsym j exec ~/Scripts/Redshift/adjust_temperature.sh dec
+    bindsym k exec ~/Scripts/Redshift/adjust_temperature.sh inc
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
