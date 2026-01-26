@@ -679,7 +679,7 @@ mode "$timermode" {
 # Environment mode
 set $envmode environment: [d]ev [s]tudy
 set $devmode dev: [b]udgie
-set $studymode study: [i]talian [t]hai
+set $studymode study: [i]talian [t]hai [d]idge
 
 bindsym $mod+e mode "$envmode"
 mode "$envmode" {
@@ -698,6 +698,7 @@ mode "$devmode" {
 mode "$studymode" {
     bindsym i exec ~/Scripts/studying/italian.sh, mode "default"
     bindsym t exec ~/Scripts/studying/thai.sh, mode "default"
+    bindsym d exec ~/Scripts/studying/didge.sh, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
