@@ -8,6 +8,10 @@ alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~
 alias w='curl wttr.in/harlow'
 
 alias grh='git reset HEAD~1'
+alias gsl='git stash list'
+alias gsp='git stash pop'
+alias gs='git stash'
+alias gdtc='git diff --staged | xclip -selection clipboard'
 
 alias ws='windsurf . && exit'
 alias wsb='windsurf ~/.bashrc'
