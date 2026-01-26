@@ -2,19 +2,19 @@ local M = {}
 
 -- Run test for current file
 M.run_test = function()
-  local current_file = vim.fn.expand("%:p")
+  local current_file = vim.fn.expand "%:p"
   if current_file == "" then
-    print("No file is currently open")
+    print "No file is currently open"
     return
   end
 
-  local ext = vim.fn.expand("%:e")
-  local filename = vim.fn.expand("%:t:r")
-  local dir = vim.fn.expand("%:p:h")
-  
+  local ext = vim.fn.expand "%:e"
+  local filename = vim.fn.expand "%:t:r"
+  local dir = vim.fn.expand "%:p:h"
+
   -- Determine test file based on language conventions
   local test_file
-  
+
   if ext == "py" then
     test_file = dir .. "/test_" .. filename .. ".py"
   elseif ext == "go" then
@@ -35,12 +35,12 @@ M.run_test = function()
       end
     end
   end
-  
+
   if not test_file or vim.fn.filereadable(test_file) == 0 then
-    print("No test file found for current file")
+    print "No test file found for current file"
     return
   end
-  
+
   -- Run the test based on file type
   local cmd
   if ext == "py" then
@@ -56,7 +56,7 @@ M.run_test = function()
       local content = vim.fn.readfile(package_json)
       local has_vitest = vim.fn.match(content, "vitest") >= 0
       local has_jest = vim.fn.match(content, "jest") >= 0
-      
+
       if has_vitest then
         cmd = "vitest run " .. vim.fn.shellescape(test_file)
       elseif has_jest then
@@ -68,12 +68,12 @@ M.run_test = function()
       cmd = "npm test -- " .. vim.fn.shellescape(test_file)
     end
   end
-  
+
   if cmd then
     -- Open terminal and run the test
     vim.cmd("split | terminal " .. cmd)
   else
-    print("Could not determine test command for this file type")
+    print "Could not determine test command for this file type"
   end
 end
 
@@ -81,11 +81,11 @@ end
 M.insert_todo = function()
   local line = vim.api.nvim_get_current_line()
   local col = vim.api.nvim_win_get_cursor(0)[2]
-  local indent = line:match("^%s*") or ""
-  
-  local ext = vim.fn.expand("%:e")
+  local indent = line:match "^%s*" or ""
+
+  local ext = vim.fn.expand "%:e"
   local comment_prefix
-  
+
   -- Determine comment style based on file type
   if ext == "py" or ext == "sh" or ext == "yaml" or ext == "yml" then
     comment_prefix = "#"
@@ -96,42 +96,42 @@ M.insert_todo = function()
   else
     comment_prefix = "//"
   end
-  
-  local datetime = os.date("%Y-%m-%d %H:%M")
-  local username = vim.fn.expand("$USER")
-  local todo = string.format("%s %s TODO(%s %s): ", indent, comment_prefix, username, datetime)
-  
+
+  local datetime = os.date "%Y-%m-%d %H:%M"
+  local username = vim.fn.expand "$USER"
+  local todo = string.format("%s %s TODO:(%s %s) ", indent, comment_prefix, username, datetime)
+
   -- Insert the TODO comment on a new line
   local current_line_num = vim.api.nvim_win_get_cursor(0)[1]
   vim.api.nvim_buf_set_lines(0, current_line_num, current_line_num, false, { todo })
-  
+
   -- Move cursor to end of TODO line
   vim.api.nvim_win_set_cursor(0, { current_line_num + 1, #todo })
-  vim.cmd("startinsert!")
+  vim.cmd "startinsert!"
 end
 
 -- Insert console.log with variable name
 M.insert_console_log = function()
   local mode = vim.fn.mode()
   local var_name
-  
+
   if mode == "v" or mode == "V" then
     -- Get visually selected text
-    vim.cmd('normal! "vy')
-    var_name = vim.fn.getreg("v")
+    vim.cmd 'normal! "vy'
+    var_name = vim.fn.getreg "v"
   else
     -- Get word under cursor
-    var_name = vim.fn.expand("<cword>")
+    var_name = vim.fn.expand "<cword>"
   end
-  
+
   if var_name == "" then
-    print("No variable selected or under cursor")
+    print "No variable selected or under cursor"
     return
   end
-  
-  local ext = vim.fn.expand("%:e")
+
+  local ext = vim.fn.expand "%:e"
   local log_statement
-  
+
   if ext == "js" or ext == "jsx" or ext == "ts" or ext == "tsx" then
     log_statement = string.format('console.log("%s:", %s);', var_name, var_name)
   elseif ext == "py" then
@@ -143,32 +143,31 @@ M.insert_console_log = function()
   else
     log_statement = string.format('console.log("%s:", %s);', var_name, var_name)
   end
-  
+
   -- Get current line and indentation
   local current_line = vim.api.nvim_get_current_line()
-  local indent = current_line:match("^%s*") or ""
+  local indent = current_line:match "^%s*" or ""
   log_statement = indent .. log_statement
-  
+
   -- Insert on next line
   local current_line_num = vim.api.nvim_win_get_cursor(0)[1]
   vim.api.nvim_buf_set_lines(0, current_line_num, current_line_num, false, { log_statement })
-  
+
   -- Move cursor to the inserted line
   vim.api.nvim_win_set_cursor(0, { current_line_num + 1, #log_statement })
 end
 
-
 -- Fuzzy find variables to console.log
 M.fuzzy_console_log = function()
-  local ext = vim.fn.expand("%:e")
-  local current_file = vim.fn.expand("%:p")
+  local ext = vim.fn.expand "%:e"
+  local current_file = vim.fn.expand "%:p"
   local buf = vim.api.nvim_get_current_buf()
-  
+
   -- Get all lines in the buffer
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   local variables = {}
   local seen = {}
-  
+
   -- Extract variable names based on file type
   local patterns = {}
   if ext == "js" or ext == "jsx" or ext == "ts" or ext == "tsx" then
@@ -177,7 +176,7 @@ M.fuzzy_console_log = function()
       "let%s+([%w_]+)%s*=",
       "var%s+([%w_]+)%s*=",
       "function%s+([%w_]+)%s*%(",
-      "([%w_]+)%s*:%s*[%w_<>%[%]]+%s*[,;)]",  -- object properties/params
+      "([%w_]+)%s*:%s*[%w_<>%[%]]+%s*[,;)]", -- object properties/params
       "([%w_]+)%s*=%s*%(", -- arrow functions
     }
   elseif ext == "py" then
@@ -206,7 +205,7 @@ M.fuzzy_console_log = function()
       "var%s+([%w_]+)%s*=",
     }
   end
-  
+
   -- Extract variables from all lines
   for line_num, line in ipairs(lines) do
     for _, pattern in ipairs(patterns) do
@@ -224,33 +223,31 @@ M.fuzzy_console_log = function()
       end
     end
   end
-  
+
   if #variables == 0 then
-    print("No variables found in current buffer")
+    print "No variables found in current buffer"
     return
   end
-  
+
   -- Use Snacks picker with preview
   local ok, snacks = pcall(require, "snacks")
   if not ok then
-    print("Snacks not available")
+    print "Snacks not available"
     return
   end
-  
-  snacks.picker.pick({
-    finder = function(picker, query, opts)
-      return variables
-    end,
+
+  snacks.picker.pick {
+    finder = function(picker, query, opts) return variables end,
     format = "file",
     confirm = function(picker, item)
       if not item then return end
-      
+
       picker:close()
-      
+
       vim.schedule(function()
         local var_name = item.var_name
         local log_statement
-        
+
         if ext == "js" or ext == "jsx" or ext == "ts" or ext == "tsx" then
           log_statement = string.format('console.log("%s:", %s);', var_name, var_name)
         elseif ext == "py" then
@@ -262,22 +259,21 @@ M.fuzzy_console_log = function()
         else
           log_statement = string.format('console.log("%s:", %s);', var_name, var_name)
         end
-        
+
         -- Get current line and indentation
         local current_line = vim.api.nvim_get_current_line()
-        local indent = current_line:match("^%s*") or ""
+        local indent = current_line:match "^%s*" or ""
         log_statement = indent .. log_statement
-        
+
         -- Insert on next line
         local current_line_num = vim.api.nvim_win_get_cursor(0)[1]
         vim.api.nvim_buf_set_lines(0, current_line_num, current_line_num, false, { log_statement })
-        
+
         -- Move cursor to the inserted line
         vim.api.nvim_win_set_cursor(0, { current_line_num + 1, #log_statement })
       end)
     end,
-  })
+  }
 end
 
 return M
-
