@@ -40,4 +40,5 @@ tailwind - caret hide invisible | caret-transparent
 test - jest use fake timers | jest.useFakeTimers({ doNotFake: ["nextTick", "setImmediate", "setTimeout", "setInterval"], });
 test - jest - use real timers | jest.useRealTimers()
 ts ignore error | //@ts-ignore-error:
-
+prisma migrate - update db with schema | npx prisma migrate dev --name add_memo_month --schema=src/shared/prisma/schema.prisma
+function with return type | const fun = (paramA: string): Promise<void> => {}
