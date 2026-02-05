@@ -289,17 +289,30 @@ exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # bindsym $mod+i exec flameshot gui
 
-set $mode_launcher Launcher: [f]irefox, [c]hrome, [s]kype, [C]alibre, [t]hunar, [a]ndroid-studio, [A]nki, [r]anger, [z]athura, [v]irtual box, [i]nsomnia, [o]bsidian, [e]mail, [l]mux
+set $mode_launcher Launcher: [d]ir, [p]rogram
 
 for_window [class="Xfce4-terminal" title="Floaty"] floating enable, resize set 1600 1000, move position center
 
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher"{
+    bindsym d mode "$mode_open_dir"
+    bindsym p mode "$mode_program_launcher"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+
+for_window [class="Xfce4-terminal" title="Floaty"] floating enable, resize set 1600 1000, move position center
+
+set $mode_program_launcher Launcher: [f]irefox, [c]hrome, [s]kype, [C]alibre, [t]hunar, [a]ndroid-studio, [A]nki, [r]anger, [z]athura, [v]irtual box, [i]nsomnia, [o]bsidian, [e]mail, [l]mux, [d]ir
+
+mode "$mode_program_launcher"{
     bindsym a exec android-studio ; mode "default"
     bindsym A exec anki ; mode "default"
     bindsym e exec --no-startup-id i3-msg 'exec xfce4-terminal -e aerc' ; mode "default"
     bindsym c exec google-chrome ; mode "default"
     bindsym C exec calibre ; mode "default"
+    bindsym d mode "$mode_open_dir"
     bindsym f exec firefox ; mode "default"
     bindsym o exec obsidian ; mode "default"
     bindsym t exec thunar ; mode "default"
@@ -310,6 +323,15 @@ mode "$mode_launcher"{
     bindsym x exec firefox --title="Floaty" --new-window google.com; mode "default"
     bindsym l exec --no-startup-id xfce4-terminal --title="Floaty" --command="$HOME/Scripts/tmux.sh"; mode "default"
     bindsym r exec --no-startup-id i3-msg 'exec xfce4-terminal -e ranger' ; mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+set $mode_open_dir Open dir: [s]cripts, [d]otfiles, .[c]onfig
+mode "$mode_open_dir"{
+    bindsym s exec --no-startup-id xfce4-terminal --working-directory="$HOME/Scripts" ; mode "default"
+    bindsym d exec --no-startup-id xfce4-terminal --working-directory="$HOME/dotfiles/" ; mode "default"
+    bindsym c exec --no-startup-id xfce4-terminal --working-directory="$HOME/.config" ; mode "default"
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
@@ -702,3 +724,16 @@ mode "$studymode" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+
+# Opens Neovim in a floating terminal titled "VIMPASTE".
+# On exit, contents are injected into the previously focused window
+# (pasted into GUI apps).
+
+for_window [title="VIMPASTE"] floating enable, move position center, resize set 1600 1000
+bindsym Ctrl+Mod1+Shift+F12 exec --no-startup-id ~/Scripts/type-in-vim.sh
+
+# Pi-hole: disable for 15 minutes (notification only)
+bindsym Ctrl+Mod1+Shift+F11 exec --no-startup-id ~/Scripts/pihole/disable-15m.sh
+
+

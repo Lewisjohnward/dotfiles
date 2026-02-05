@@ -1,6 +1,10 @@
 
 
-clear && fastfetch
+if [ -z "${FASTFETCH_SHOWN:-}" ]; then
+  export FASTFETCH_SHOWN=1
+  clear
+  command -v fastfetch >/dev/null && fastfetch
+fi
 
 export EDITOR="nvim"
 export VISUAL="nvim"
