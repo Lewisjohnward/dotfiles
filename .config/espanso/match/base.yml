@@ -1,0 +1,304 @@
+# espanso match file
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
+
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+
+  # But matches can also be dynamic:
+
+  # Print the current date
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%m/%d/%Y"
+
+  # Print the output of a shell command
+  - trigger: ":shell"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'Hello from your shell'"
+
+  - trigger: ";wdyt"
+    replace: "what do you think about"
+
+  - trigger: ";hdtl"
+    replace: "how does this look?"
+
+  - trigger: ";wa"
+    replace: "what are"
+
+  - trigger: ";it"
+    replace: "I think"
+
+  - trigger: ";iwl"
+    replace: "I would like"
+
+  - trigger: ";@"
+    replace: "lewisjohnward@gmail.com"
+
+  - trigger: ";hw"
+    replace: "hello world!"
+
+  - trigger: ";cl"
+    replace: "console.log($|$)"
+
+  - trigger: ";bgr4"
+    replace: "bg-red-400"
+
+  - trigger: ";bgy4"
+    replace: "bg-yellow-400"
+
+  - trigger: ";bgg4"
+    replace: "bg-green-400"
+
+  - trigger: ";bgc4"
+    replace: "bg-cyan-400"
+
+  - trigger: ";bgs4"
+    replace: "bg-sky-400"
+
+  - trigger: ";bgp4"
+    replace: "bg-pink-400"
+
+  - trigger: ";bgi4"
+    replace: "bg-indigo-400"
+
+  - trigger: ";bgb4"
+    replace: "bg-blue-400"
+
+  - trigger: ";bgg4"
+    replace: "bg-gray-400"
+
+  - trigger: ";bgw"
+    replace: "bg-white"
+
+  - trigger: ";bdr"
+    replace: "border"
+
+  - trigger: ";bcr4"
+    replace: "border-red-400"
+
+  - trigger: ";bcg4"
+    replace: "border-gray-400"
+
+  - trigger: ";br"
+    replace: "rounded"
+
+  - trigger: ";tcg4"
+    replace: "text-gray-400"
+
+  - trigger: ";on"
+    replace: "outline-none"
+
+  - trigger: ";sfn"
+    replace: "focus:"
+
+  - trigger: ";sfw"
+    replace: "focus-within:"
+
+  - trigger: ";sfgw"
+    replace: "focus-group-within:"
+
+  - trigger: ";sh"
+    replace: "hover:"
+
+  - trigger: ";df"
+    replace: "flex"
+
+  - trigger: ";ps"
+    replace: "sticky"
+
+  - trigger: ";pf"
+    replace: "fixed"
+
+  - trigger: ";pr"
+    replace: "relative"
+
+  - trigger: ";pt4"
+    replace: "top-4"
+
+  - trigger: ";fic"
+    replace: "items-center"
+
+  - trigger: ";fjc"
+    replace: "justify-center"
+
+  - trigger: ";fjb"
+    replace: "justify-between"
+
+  - trigger: ";fje"
+    replace: "justify-end"
+
+  - trigger: ";fjs"
+    replace: "justify-start"
+
+  - trigger: ";fg4"
+    replace: "gap-4"
+
+  - trigger: ";spy4"
+    replace: "space-y-4"
+
+  - trigger: ";jcf"
+    form: |
+      const [[var]] = () => {
+        console.log("[[var]]")
+      }
+    form_fields:
+      text:
+        multiline: true
+
+  - trigger: ";dg"
+    replace: "grid"
+
+  - trigger: ";p4"
+    replace: "p-4"
+
+  - trigger: ";wf"
+    replace: "w-full"
+
+  - trigger: ";hip"
+    replace: 'placeholder={"$|$"}'
+
+  - trigger: ";hiv"
+    replace: "value={$|$}"
+
+  - trigger: ";hioc"
+    replace: "onChange={$|$}"
+
+  - trigger: ";hr"
+    replace: "ref={$|$}"
+
+  - trigger: ";db"
+    replace: "block"
+
+  - trigger: ";dib"
+    replace: "inline-block"
+
+  - trigger: ";dn"
+    replace: "none"
+
+  - trigger: ";cn"
+    replace: 'className="$|$"'
+
+  - trigger: ";oc"
+    replace: "onClick={$|$}"
+
+  - trigger: ";fb"
+    replace: "font-bold"
+
+  - trigger: ";txxl"
+    replace: "text-xl"
+
+  - trigger: ";txlg"
+    replace: "text-lg"
+
+  - trigger: ";tx-md"
+    replace: "text-md"
+
+  - trigger: ";txsm"
+    replace: "text-sm"
+
+  - trigger: ";test"
+    replace: |
+      it('should $|$', async () => {
+        expect.hasAssertions()
+      });
+
+  - trigger: ";stest"
+    replace: |
+      it.skip('should $|$', async () => {
+        expect.hasAssertions()
+      });
+
+  - trigger: ";desc"
+    replace: |
+      describe('$|$', () => {
+        
+      });
+
+  - trigger: ";e.ha"
+    replace: expect.hasAssertions()
+
+  - trigger: "copmnnet"
+    replace: "component"
+
+  - trigger: "compoent"
+    replace: "component"
+
+  - trigger: "compnent"
+    replace: "component"
+
+  - trigger: "copmonent"
+    replace: "component"
+
+  - trigger: "copmnent"
+    replace: "component"
+
+  - trigger: ";com"
+    replace: "component"
+
+  - trigger: "transcation"
+    replace: "transaction"
+
+  - trigger: ";rfc"
+    replace: |
+      import React from "react";
+
+      export default function {{name}}() {
+        return <div>{{name}}</div>;
+      }
+
+  - trigger: ";rue"
+    replace: |
+      useEffect(() => {
+
+      return () => {
+        console.log("unmounting")
+      }
+      }, [])
+
+  - trigger: ";ruf"
+    form: |
+      const [[var]] = useRef([[init]])
+    form_fields:
+      text:
+        multiline: true
+
+  - trigger: ";rus"
+    form: |
+      const [[[var]], set[[var]]] = useState([[init]])
+    form_fields:
+      text:
+        multiline: true
+  # And much more! For more information, visit the docs: https://espanso.org/docs/
+  # git
+  - trigger: ";gsl"
+    replace: "git stash list"
+
+  - trigger: ";gsss"
+    replace: "git stash show stash@{0}"
+
+  - trigger: ";gsp"
+    replace: "git stash pop"
+
+  - trigger: ";;l"
+    replace: "lewis"
+
+  - trigger: ";;w"
+    replace: "ward"
