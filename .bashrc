@@ -10,6 +10,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker'
 alias w='curl wttr.in/harlow'
+alias r='ranger'
 
 alias set1080p='xrdb -merge ~/.Xresources-1080p && xrandr --dpi 96 && i3-msg restart'
 alias lg="lazygit"
