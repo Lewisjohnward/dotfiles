@@ -14,17 +14,30 @@ case "$HOST" in
 esac
 
 set -a
+
 # shellcheck disable=SC1090
 source "$PROFILE"
 set +a
 
 mkdir -p ~/.config/i3 ~/.config/polybar
 
+# --- Select workspace mapping file (no templating, just include) ---
+case "$HOST" in
+  Thinkerton)
+    ln -sf "$REPO_DIR/templates/i3/laptop.conf"  ~/.config/i3/workspaces.conf
+    ;;
+  BadRobot)
+    ln -sf "$REPO_DIR/templates/i3/desktop.conf" ~/.config/i3/workspaces.conf
+    ;;
+esac
+
 # Only substitute OUR vars (so i3's $mod, $ws1 etc are preserved)
-I3_VARS='${FONT_SIZE} ${I3_GAPS_INNER} ${I3_AUTORANDR_CMD}'
-POLYBAR_VARS='${FONT_SIZE} ${POLYBAR_HEIGHT}'
+I3_VARS='${I3_FONT_SIZE} ${I3_GAPS_INNER} ${I3_AUTORANDR_CMD}'
+POLYBAR_VARS='${FONT_SIZE} ${POLYBAR_HEIGHT} ${POLYBAR_FONT_SIZE} '
 
 envsubst "$I3_VARS" < "$REPO_DIR/templates/i3/config.tmpl" > ~/.config/i3/generated.conf
-envsubst "$POLYBAR_VARS" < "$REPO_DIR/templates/polybar/config.ini.tmpl" > ~/.config/polybar/config.ini
+envsubst "$POLYBAR_VARS" < "$REPO_DIR/templates/polybar/config.ini.tmpl" > ~/.config/polybar/generated.ini
 
 echo "Generated configs for host '$HOST' using $(basename "$PROFILE")"
+echo "Workspaces: $(readlink -f ~/.config/i3/workspaces.conf)"
+
