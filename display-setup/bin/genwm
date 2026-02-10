@@ -21,6 +21,23 @@ set +a
 
 mkdir -p ~/.config/i3 ~/.config/polybar
 
+## not working properly, gave up, copy over manually on fresh installs
+# --- Install X profile + Xresources directly ---
+# case "$HOST" in
+#   Thinkerton)
+#     cp "$REPO_DIR/templates/xprofile/laptop.conf"  ~/.xprofile
+#     # cp "$REPO_DIR/templates/xprofile/.Xresources-laptop"     ~/.Xresources-laptop
+#     # ln -sf ~/.Xresources-laptop ~/.Xresources
+#     ;;
+#   BadRobot)
+#     cp "$REPO_DIR/templates/xprofile/desktop.conf" ~/.xprofile
+#     # cp "$REPO_DIR/templates/xprofile/.Xresources-desktop"    ~/.Xresources-desktop
+#     # ln -sf ~/.Xresources-desktop ~/.Xresources
+#     ;;
+# esac
+#
+# chmod +x ~/.xprofile
+
 # --- Select workspace mapping file (no templating, just include) ---
 case "$HOST" in
   Thinkerton)
