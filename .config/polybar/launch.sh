@@ -6,7 +6,7 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Paths
 CONFIG_DIR="$HOME/.config/polybar"
-BASE_CONFIG="$CONFIG_DIR/config.ini"
+BASE_CONFIG="$CONFIG_DIR/generated.ini"
 TMP_CONFIG="/tmp/polybar_config_$USER.ini"
 
 # Detect if 4K external monitor is connected
