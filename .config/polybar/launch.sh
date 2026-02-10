@@ -50,12 +50,6 @@ for monitor in $(xrandr --query | grep " connected" | cut -d" " -f1); do
         echo "Launching full Polybar on monitor: $monitor"
         MONITOR=$monitor polybar --config="$TMP_CONFIG" main 2>&1 | tee -a /tmp/polybar_${monitor}.log & disown
     fi
->>>>>>> b9ee3622a7275b008941b47672709245c4f769a7
-done
-
-pkill -u "$UID" -9 -f '(^|/)(polybar)(\s|$)' 2>/dev/null || true
-while pgrep -u "$UID" -f '(^|/)(polybar)(\s|$)' >/dev/null; do
-  sleep 0.1
 done
 
 # ---------- get hostname for dymanic modules / wifi ----------
@@ -137,8 +131,6 @@ if [[ "$DEVICE_TYPE" == "laptop" ]]; then
 else
   export POLYBAR_MODULES_RIGHT="$DESKTOP_MODULES_RIGHT"
 fi
-
-
 
 
 # ---------- launch ----------
