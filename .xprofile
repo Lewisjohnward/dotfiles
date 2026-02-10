@@ -1,3 +1,0 @@
-# do i need to keep this? should be getting xprofile and resources from display settings
-xrdb -merge ~/.Xresources-4k
-export PATH=$HOME/Scripts/wrappers:$PATH
