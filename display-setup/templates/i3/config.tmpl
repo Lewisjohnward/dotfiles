@@ -275,15 +275,16 @@ exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # bindsym $mod+i exec flameshot gui
 
-set $mode_launcher Launcher: [d]ir, [p]rogram, [w]ebsite
+set $mode_launcher Launcher: [D]ir, [p]rogram, [d]otfile, [w]ebsite
 
 for_window [class="Xfce4-terminal" title="Floaty"] floating enable, resize set 1600 1000, move position center
 
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher"{
-    bindsym d mode "$mode_open_dir"
+    bindsym Shift+d mode "$mode_open_dir"
     bindsym p mode "$mode_program_launcher"
-    bindsym w mode "$mode_website_launcher"
+    bindsym w exec --no-startup-id ~/Scripts/i3/websites-launcher.py menu; mode "$mode_website_launcher"
+    bindsym d exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py menu; mode "$mode_dotfile_launcher"
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
@@ -320,12 +321,130 @@ mode "$mode_open_dir"{
     bindsym Return mode "default"
 }
 
-set $mode_website_launcher Open dir: [a]mazon, [b]oard game arena, [s]peechling, [w]hatsapp
-mode "$mode_website_launcher"{
-    bindsym a exec firefox --new-window https://www.amazon.co.uk/gp/css/order-history?ref_=nav_orders_first ; mode "default"
-    bindsym b exec firefox --new-window https://boardgamearena.com/play ; mode "default"
-    bindsym w exec firefox --new-window https://web.whatsapp.com/ ; mode "default"
-    bindsym s exec google-chrome --new-window https://speechling.com ; mode "default"
+set $mode_website_launcher Launcher (press key, ? for list)
+mode "$mode_website_launcher" {
+    # a-z
+    bindsym a exec --no-startup-id ~/Scripts/i3/websites-launcher.py a ; mode "default"
+    bindsym b exec --no-startup-id ~/Scripts/i3/websites-launcher.py b ; mode "default"
+    bindsym c exec --no-startup-id ~/Scripts/i3/websites-launcher.py c ; mode "default"
+    bindsym d exec --no-startup-id ~/Scripts/i3/websites-launcher.py d ; mode "default"
+    bindsym e exec --no-startup-id ~/Scripts/i3/websites-launcher.py e ; mode "default"
+    bindsym f exec --no-startup-id ~/Scripts/i3/websites-launcher.py f ; mode "default"
+    bindsym g exec --no-startup-id ~/Scripts/i3/websites-launcher.py g ; mode "default"
+    bindsym h exec --no-startup-id ~/Scripts/i3/websites-launcher.py h ; mode "default"
+    bindsym i exec --no-startup-id ~/Scripts/i3/websites-launcher.py i ; mode "default"
+    bindsym j exec --no-startup-id ~/Scripts/i3/websites-launcher.py j ; mode "default"
+    bindsym k exec --no-startup-id ~/Scripts/i3/websites-launcher.py k ; mode "default"
+    bindsym l exec --no-startup-id ~/Scripts/i3/websites-launcher.py l ; mode "default"
+    bindsym m exec --no-startup-id ~/Scripts/i3/websites-launcher.py m ; mode "default"
+    bindsym n exec --no-startup-id ~/Scripts/i3/websites-launcher.py n ; mode "default"
+    bindsym o exec --no-startup-id ~/Scripts/i3/websites-launcher.py o ; mode "default"
+    bindsym p exec --no-startup-id ~/Scripts/i3/websites-launcher.py p ; mode "default"
+    bindsym q exec --no-startup-id ~/Scripts/i3/websites-launcher.py q ; mode "default"
+    bindsym r exec --no-startup-id ~/Scripts/i3/websites-launcher.py r ; mode "default"
+    bindsym s exec --no-startup-id ~/Scripts/i3/websites-launcher.py s ; mode "default"
+    bindsym t exec --no-startup-id ~/Scripts/i3/websites-launcher.py t ; mode "default"
+    bindsym u exec --no-startup-id ~/Scripts/i3/websites-launcher.py u ; mode "default"
+    bindsym v exec --no-startup-id ~/Scripts/i3/websites-launcher.py v ; mode "default"
+    bindsym w exec --no-startup-id ~/Scripts/i3/websites-launcher.py w ; mode "default"
+    bindsym x exec --no-startup-id ~/Scripts/i3/websites-launcher.py x ; mode "default"
+    bindsym y exec --no-startup-id ~/Scripts/i3/websites-launcher.py y ; mode "default"
+    bindsym z exec --no-startup-id ~/Scripts/i3/websites-launcher.py z ; mode "default"
+
+    # 0-9
+    bindsym 1 exec --no-startup-id ~/Scripts/i3/websites-launcher.py 1 ; mode "default"
+    bindsym 2 exec --no-startup-id ~/Scripts/i3/websites-launcher.py 2 ; mode "default"
+    bindsym 3 exec --no-startup-id ~/Scripts/i3/websites-launcher.py 3 ; mode "default"
+    bindsym 4 exec --no-startup-id ~/Scripts/i3/websites-launcher.py 4 ; mode "default"
+    bindsym 5 exec --no-startup-id ~/Scripts/i3/websites-launcher.py 5 ; mode "default"
+    bindsym 6 exec --no-startup-id ~/Scripts/i3/websites-launcher.py 6 ; mode "default"
+    bindsym 7 exec --no-startup-id ~/Scripts/i3/websites-launcher.py 7 ; mode "default"
+    bindsym 8 exec --no-startup-id ~/Scripts/i3/websites-launcher.py 8 ; mode "default"
+    bindsym 9 exec --no-startup-id ~/Scripts/i3/websites-launcher.py 9 ; mode "default"
+    bindsym 0 exec --no-startup-id ~/Scripts/i3/websites-launcher.py 0 ; mode "default"
+
+    # Help / exit
+    bindsym Shift+slash exec --no-startup-id ~/Scripts/i3/websites-launcher.py menu
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+set $mode_dotfile_launcher Dotfiles (press key, ? for list)
+
+mode "$mode_dotfile_launcher" {
+   # a-z
+    bindsym a exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch a ; mode "default"
+    bindsym b exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch b ; mode "default"
+    bindsym c exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch c ; mode "default"
+    bindsym d exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch d ; mode "default"
+    bindsym e exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch e ; mode "default"
+    bindsym f exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch f ; mode "default"
+    bindsym g exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch g ; mode "default"
+    bindsym h exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch h ; mode "default"
+    bindsym i exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch i ; mode "default"
+    bindsym j exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch j ; mode "default"
+    bindsym k exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch k ; mode "default"
+    bindsym l exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch l ; mode "default"
+    bindsym m exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch m ; mode "default"
+    bindsym n exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch n ; mode "default"
+    bindsym o exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch o ; mode "default"
+    bindsym p exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch p ; mode "default"
+    bindsym q exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch q ; mode "default"
+    bindsym r exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch r ; mode "default"
+    bindsym s exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch s ; mode "default"
+    bindsym t exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch t ; mode "default"
+    bindsym u exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch u ; mode "default"
+    bindsym v exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch v ; mode "default"
+    bindsym w exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch w ; mode "default"
+    bindsym x exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch x ; mode "default"
+    bindsym y exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch y ; mode "default"
+    bindsym z exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch z ; mode "default"
+
+        # A-Z (Shift + letter)
+    bindsym Shift+a exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch A ; mode "default"
+    bindsym Shift+b exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch B ; mode "default"
+    bindsym Shift+c exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch C ; mode "default"
+    bindsym Shift+d exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch D ; mode "default"
+    bindsym Shift+e exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch E ; mode "default"
+    bindsym Shift+f exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch F ; mode "default"
+    bindsym Shift+g exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch G ; mode "default"
+    bindsym Shift+h exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch H ; mode "default"
+    bindsym Shift+i exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch I ; mode "default"
+    bindsym Shift+j exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch J ; mode "default"
+    bindsym Shift+k exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch K ; mode "default"
+    bindsym Shift+l exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch L ; mode "default"
+    bindsym Shift+m exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch M ; mode "default"
+    bindsym Shift+n exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch N ; mode "default"
+    bindsym Shift+o exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch O ; mode "default"
+    bindsym Shift+p exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch P ; mode "default"
+    bindsym Shift+q exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch Q ; mode "default"
+    bindsym Shift+r exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch R ; mode "default"
+    bindsym Shift+s exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch S ; mode "default"
+    bindsym Shift+t exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch T ; mode "default"
+    bindsym Shift+u exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch U ; mode "default"
+    bindsym Shift+v exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch V ; mode "default"
+    bindsym Shift+w exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch W ; mode "default"
+    bindsym Shift+x exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch X ; mode "default"
+    bindsym Shift+y exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch Y ; mode "default"
+    bindsym Shift+z exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch Z ; mode "default"
+
+
+    # 0-9
+    bindsym 1 exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch 1 ; mode "default"
+    bindsym 2 exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch 2 ; mode "default"
+    bindsym 3 exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch 3 ; mode "default"
+    bindsym 4 exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch 4 ; mode "default"
+    bindsym 5 exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch 5 ; mode "default"
+    bindsym 6 exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch 6 ; mode "default"
+    bindsym 7 exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch 7 ; mode "default"
+    bindsym 8 exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch 8 ; mode "default"
+    bindsym 9 exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch 9 ; mode "default"
+    bindsym 0 exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py launch 0 ; mode "default"
+
+    # Show menu again
+    bindsym Slash+slash exec --no-startup-id ~/Scripts/i3/dotfiles-launcher.py menu
+
+    # Exit
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
