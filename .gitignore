@@ -1,4 +1,5 @@
 .bash_history
 .config/aerc/accounts.conf
 .config/i3/generated.conf
+.config/i3/workspaces.conf
 .config/polybar/generated.ini
