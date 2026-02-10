@@ -275,7 +275,7 @@ exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # bindsym $mod+i exec flameshot gui
 
-set $mode_launcher Launcher: [d]ir, [p]rogram, [w]ebsite 
+set $mode_launcher Launcher: [d]ir, [p]rogram, [w]ebsite, testttt
 
 for_window [class="Xfce4-terminal" title="Floaty"] floating enable, resize set 1600 1000, move position center
 
@@ -612,9 +612,10 @@ mode "$systemmode" {
 }
 
 # Window manager control mode
-set $windowmanagermode window-manager: [q]kill-workspace-windows, [r]estart
+set $windowmanagermode window-manager: [q]kill-workspace-windows, [r]estart, [u]pdate dotfiles and rebuild 
 mode "$windowmanagermode" {
-    bindsym q exec ~/Scripts/i3-kill-workspace-windows.sh, mode "default"
+    bindsym q exec ~/Scripts/i3/i3-kill-workspace-windows.sh, mode "default"
+    bindsym u exec ~/Scripts/i3/update-i3-polybar-config.sh, mode "default"
     bindsym r restart, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
