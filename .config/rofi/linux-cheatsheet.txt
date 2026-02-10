@@ -72,14 +72,8 @@ get lines of code | cloc . --exclude-dir=node_modules,.next,dist,coverage
 install .deb | sudo apt install ./package.deb
 move tmux windows | ctrl+t then o/p
 git show lines of code change in commit | git show --stat <commit-hash>
-print the directory structure | tree -L 4
+print the directory structure | tree -I "node_modules|dist|build|.git"
 update linux os version | sudo do-release-upgrade
 git show detailed tree with branches | git log --graph --all --decorate --stat
 vim yank to register | "<register>y<motion>
 vim paste from register | C-r<register>
-
-
-
-
-
-
