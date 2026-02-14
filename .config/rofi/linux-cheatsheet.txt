@@ -78,3 +78,6 @@ git show detailed tree with branches | git log --graph --all --decorate --stat
 vim yank to register | "<register>y<motion>
 vim paste from register | C-r<register>
 qmk flash kb | qmk flash -kb keychron/k9_max/ansi/rgb -km kb_06_mouse_movement
+disk usage display largest 40 dirs | sudo du -ah /home/lewis/ | sort -rh | head -n 40
+disk usage display largest 40 dirs from / | sudo du -axh / | sort -rh | head -n 40
+

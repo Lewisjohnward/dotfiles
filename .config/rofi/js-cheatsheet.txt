@@ -42,3 +42,4 @@ test - jest - use real timers | jest.useRealTimers()
 ts ignore error | //@ts-ignore-error:
 prisma migrate - update db with schema | npx prisma migrate dev --name add_memo_month --schema=src/shared/prisma/schema.prisma
 function with return type | const fun = (paramA: string): Promise<void> => {}
+run unit test with config | npx jest --config jest.config.unit.ts -- src/features/budget/category/utils/roundTransactionsToStartOfMonth.test.ts

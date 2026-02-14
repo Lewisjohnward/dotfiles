@@ -731,11 +731,44 @@ mode "$systemmode" {
 }
 
 # Window manager control mode
-set $windowmanagermode window-manager: [q]kill-workspace-windows, [r]estart, [u]pdate dotfiles and rebuild 
+set $windowmanagermode window-manager: [q]kill-workspace-windows, [R]estart, [u]pdate dotfiles and rebuild, [s]ticky, [m]ove, [r]esize
 mode "$windowmanagermode" {
     bindsym q exec ~/Scripts/i3/i3-kill-workspace-windows.sh, mode "default"
     bindsym u exec ~/Scripts/i3/update-i3-polybar-config.sh, mode "default"
-    bindsym r restart, mode "default"
+    bindsym s sticky enable, mode "default"
+    bindsym Shift+r restart, mode "default"
+    bindsym r mode "$mode_resize"
+    bindsym m mode "$mode_move"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$mode_move" {
+    bindsym h move left 100px
+    bindsym j move down 100px
+    bindsym k move up 100px
+    bindsym l move right 100px
+
+    bindsym Left  move left 100px
+    bindsym Down  move down 100px
+    bindsym Up    move up 100px
+    bindsym Right move right 100px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$mode_resize" {
+    bindsym h resize shrink width 20 px or 20 ppt
+    bindsym l resize grow   width 20 px or 20 ppt
+    bindsym j resize grow   height 20 px or 20 ppt
+    bindsym k resize shrink height 20 px or 20 ppt
+
+    bindsym Left  resize shrink width 20 px or 20 ppt
+    bindsym Right resize grow   width 20 px or 20 ppt
+    bindsym Down  resize grow   height 20 px or 20 ppt
+    bindsym Up    resize shrink height 20 px or 20 ppt
+
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
