@@ -226,6 +226,10 @@ matches:
         expect.hasAssertions()
       });
 
+  - trigger: ";ex"
+    replace: |
+      expect(x).toBe(y)
+
   - trigger: ";desc"
     replace: |
       describe('$|$', () => {
