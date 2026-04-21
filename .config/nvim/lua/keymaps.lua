@@ -145,3 +145,30 @@ vim.keymap.set(
 -- Jump list navigation
 vim.keymap.set("n", "<leader>j", "<C-o>", { noremap = true, silent = true, desc = "Go back in jump list" })
 vim.keymap.set("n", "<leader>k", "<C-i>", { noremap = true, silent = true, desc = "Go forward in jump list" })
+
+-- Quickfix list
+vim.keymap.set("n", "<leader>xn", "<cmd>cnext<cr>")
+vim.keymap.set("n", "<leader>xp", "<cmd>cprev<cr>")
+
+-- Toggle quickfix
+vim.keymap.set("n", "<leader>xc", function()
+  for _, win in ipairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      vim.cmd "cclose"
+      return
+    end
+  end
+  vim.cmd "copen"
+end)
+
+-- Quickfix remove current entry
+vim.keymap.set("n", "<leader>xd", function()
+  local idx = vim.fn.getqflist({ idx = 0 }).idx
+  vim.cmd(idx .. "cc")
+  vim.cmd("cfilter! " .. vim.fn.expand "<cword>")
+end)
+
+-- Quickfix clear list
+vim.keymap.set("n", "<leader>xx", "<cmd>cexpr []<cr>")
+-- Quickfix populate with diagnostics for all buffers
+vim.keymap.set("n", "<leader>xe", function() vim.diagnostic.setqflist { open = true } end)
