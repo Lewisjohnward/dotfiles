@@ -91,22 +91,84 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 
 -- Load file navigation utilities
-local file_nav = require("utils.file_navigation")
-local productivity = require("utils.productivity")
+local file_nav = require "utils.file_navigation"
+local productivity = require "utils.productivity"
 
 -- Open or create test file for current file
-vim.keymap.set("n", "<leader>ot", file_nav.open_test_file, { noremap = true, silent = true, desc = "Open or create test file" })
+vim.keymap.set(
+  "n",
+  "<leader>ot",
+  file_nav.open_test_file,
+  { noremap = true, silent = true, desc = "Open or create test file" }
+)
 
 -- Open or create Storybook story file for current file
-vim.keymap.set("n", "<leader>os", file_nav.open_story_file, { noremap = true, silent = true, desc = "Open or create Storybook story file" })
+vim.keymap.set(
+  "n",
+  "<leader>os",
+  file_nav.open_story_file,
+  { noremap = true, silent = true, desc = "Open or create Storybook story file" }
+)
 
 -- Productivity keymaps
-vim.keymap.set("n", "<leader>pt", productivity.run_test, { noremap = true, silent = true, desc = "Run test for current file" })
-vim.keymap.set("n", "<leader>it", productivity.insert_todo, { noremap = true, silent = true, desc = "Insert TODO comment" })
-vim.keymap.set("n", "<leader>il", productivity.insert_console_log, { noremap = true, silent = true, desc = "Insert console.log" })
-vim.keymap.set("v", "<leader>il", productivity.insert_console_log, { noremap = true, silent = true, desc = "Insert console.log" })
-vim.keymap.set("n", "<leader>iL", productivity.fuzzy_console_log, { noremap = true, silent = true, desc = "Fuzzy find variable to log" })
+vim.keymap.set(
+  "n",
+  "<leader>pt",
+  productivity.run_test,
+  { noremap = true, silent = true, desc = "Run test for current file" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>it",
+  productivity.insert_todo,
+  { noremap = true, silent = true, desc = "Insert TODO comment" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>il",
+  productivity.insert_console_log,
+  { noremap = true, silent = true, desc = "Insert console.log" }
+)
+vim.keymap.set(
+  "v",
+  "<leader>il",
+  productivity.insert_console_log,
+  { noremap = true, silent = true, desc = "Insert console.log" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>iL",
+  productivity.fuzzy_console_log,
+  { noremap = true, silent = true, desc = "Fuzzy find variable to log" }
+)
 
 -- Jump list navigation
 vim.keymap.set("n", "<leader>j", "<C-o>", { noremap = true, silent = true, desc = "Go back in jump list" })
 vim.keymap.set("n", "<leader>k", "<C-i>", { noremap = true, silent = true, desc = "Go forward in jump list" })
+
+-- Quickfix list
+vim.keymap.set("n", "<leader>xn", "<cmd>cnext<cr>")
+vim.keymap.set("n", "<leader>xp", "<cmd>cprev<cr>")
+
+-- Toggle quickfix
+vim.keymap.set("n", "<leader>xc", function()
+  for _, win in ipairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      vim.cmd "cclose"
+      return
+    end
+  end
+  vim.cmd "copen"
+end)
+
+-- Quickfix remove current entry
+vim.keymap.set("n", "<leader>xd", function()
+  local idx = vim.fn.getqflist({ idx = 0 }).idx
+  vim.cmd(idx .. "cc")
+  vim.cmd("cfilter! " .. vim.fn.expand "<cword>")
+end)
+
+-- Quickfix clear list
+vim.keymap.set("n", "<leader>xx", "<cmd>cexpr []<cr>")
+-- Quickfix populate with diagnostics for all buffers
+vim.keymap.set("n", "<leader>xe", function() vim.diagnostic.setqflist { open = true } end)
