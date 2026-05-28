@@ -172,3 +172,51 @@ end)
 vim.keymap.set("n", "<leader>xx", "<cmd>cexpr []<cr>")
 -- Quickfix populate with diagnostics for all buffers
 vim.keymap.set("n", "<leader>xe", function() vim.diagnostic.setqflist { open = true } end)
+
+-- Neotest
+local neotest = require "neotest"
+
+vim.keymap.set("n", "<leader>tt", function() neotest.run.run() end, { desc = "Run nearest test" })
+
+vim.keymap.set(
+  "n",
+  "<leader>tf",
+  function() neotest.run.run(vim.fn.expand "%") end,
+  { desc = "Run all tests in current file" }
+)
+
+vim.keymap.set("n", "<leader>ts", function() require("neotest").summary.toggle() end, { desc = "Toggle test summary" })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "neotest-summary",
+  callback = function() vim.cmd "vertical resize 90" end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "neotest-output-panel",
+  callback = function()
+    vim.cmd "wincmd L" -- move to right side
+    vim.cmd "vertical resize 90"
+  end,
+})
+
+vim.keymap.set(
+  "n",
+  "<leader>to",
+  function() neotest.output.open { enter = true } end,
+  { desc = "Show test output (current test)" }
+)
+
+vim.keymap.set(
+  "n",
+  "<leader>tO",
+  function() neotest.output.open { enter = true } end,
+  { desc = "Show test output (cursor-based)" }
+)
+
+vim.keymap.set(
+  "n",
+  "<leader>tp",
+  function() neotest.output_panel.toggle() end,
+  { desc = "Toggle persistent output panel" }
+)
