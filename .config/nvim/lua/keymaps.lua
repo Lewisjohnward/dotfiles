@@ -187,19 +187,6 @@ vim.keymap.set(
 
 vim.keymap.set("n", "<leader>ts", function() require("neotest").summary.toggle() end, { desc = "Toggle test summary" })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "neotest-summary",
-  callback = function() vim.cmd "vertical resize 90" end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "neotest-output-panel",
-  callback = function()
-    vim.cmd "wincmd L" -- move to right side
-    vim.cmd "vertical resize 90"
-  end,
-})
-
 vim.keymap.set(
   "n",
   "<leader>to",
@@ -220,3 +207,5 @@ vim.keymap.set(
   function() neotest.output_panel.toggle() end,
   { desc = "Toggle persistent output panel" }
 )
+
+vim.keymap.set("n", "<leader>tl", function() require("neotest").run.run_last() end, { desc = "Run last test" })

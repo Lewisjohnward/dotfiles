@@ -16,6 +16,7 @@ return {
 
     require("neotest").setup {
       summary = {
+        open = "botright vsplit | vertical resize 100",
         mappings = {
           jumpto = "<CR>",
           run = "r",
@@ -26,6 +27,9 @@ return {
           expand = "e",
           stop = "S",
         },
+      },
+      output_panel = {
+        open = "botright vsplit | vertical resize 80", -- horizontal split, 20 lines tall
       },
       adapters = {
         jest {
