@@ -1,6 +1,7 @@
 youtube yt-dlp download best audio | yt-dlp -f bestaudio URL
 youtube yt-dlp download audio rename| yt-dlp -x --audio-format mp3 -o "%(title)s.%(ext)s" URL
 youtube yt-dlp download playist and rename| yt-dlp -o "%(playlist_index)s - %(title)s.%(ext)s" <playlist_url>
+generate 32 byte secret payload| openssl rand -base64 32
 youtube yt-dlp download playlist best under 720p| yt-dlp -f "bv*[height<=720]+ba/best[height<=720]" -o "%(playlist_index)s - %(title)s.%(ext)s" <playlist_url>
 youtube yt-dlp search for 1 result and get the url| yt-dlp "ytsearch1:QUERY" --get-url
 List files | ls -lah
