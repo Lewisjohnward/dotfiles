@@ -638,7 +638,7 @@ bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace bac
 
 bindsym $mod+i exec /home/lewis/Scripts/rofi/rofi-main.sh
 
-set $searchmode search: [c]hatgpt, [g]oogle, [y]outube, [e]bay, [a]mazon, g[i]thub, [r]eddit, [w]ikipedia
+set $searchmode search: [c]hatgpt, [g]oogle, [G]emini, [y]outube, [e]bay, [a]mazon, g[i]thub, [r]eddit, [w]ikipedia
 bindsym $mod+s mode "$searchmode"
 mode "$searchmode" {
     bindsym c exec /home/lewis/Scripts/search/chatgpt.sh; mode "default"
@@ -647,6 +647,7 @@ mode "$searchmode" {
     bindsym e exec /home/lewis/Scripts/search/ebay.sh; mode "default"
     bindsym a exec /home/lewis/Scripts/search/amazon.sh; mode "default"
     bindsym i exec /home/lewis/Scripts/search/github.sh; mode "default"
+    bindsym shift+g exec /home/lewis/Scripts/search/gemini.sh; mode "default"
     bindsym r exec /home/lewis/Scripts/search/reddit.sh; mode "default"
     bindsym w exec /home/lewis/Scripts/search/wikipedia.sh; mode "default"
     bindsym Return mode "default"
