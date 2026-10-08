@@ -209,3 +209,5 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "<leader>tl", function() require("neotest").run.run_last() end, { desc = "Run last test" })
+
+vim.keymap.set("n", "<leader>go", "<cmd>Gvsplit HEAD:%<CR>", { silent = true, desc = "Open current file at HEAD" })
