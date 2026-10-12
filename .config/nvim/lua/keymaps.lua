@@ -211,3 +211,21 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>tl", function() require("neotest").run.run_last() end, { desc = "Run last test" })
 
 vim.keymap.set("n", "<leader>go", "<cmd>Gvsplit HEAD:%<CR>", { silent = true, desc = "Open current file at HEAD" })
+
+-- Git: browse changed files
+vim.keymap.set("n", "<leader>fg", function() Snacks.picker.git_status() end, { desc = "Git status (changed files)" })
+
+-- Git: open combined staged and unstaged diff
+vim.keymap.set("n", "<leader>od", function()
+  local diff = vim.fn.systemlist "git diff --cached"
+
+  vim.cmd "tabnew"
+  vim.bo.buftype = "nofile"
+  vim.bo.bufhidden = "wipe"
+  vim.bo.swapfile = false
+  vim.bo.filetype = "diff"
+
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, diff)
+  vim.bo.modified = false
+  vim.cmd "normal! gg"
+end, { desc = "Open staged and unstaged diff" })
