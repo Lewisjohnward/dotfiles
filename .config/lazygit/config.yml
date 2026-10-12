@@ -2,6 +2,6 @@ customCommands:
   - key: "!"
     context: "files"
     description: "Copy staged diff to clipboard"
-    command: "git diff --cached | xclip -selection clipboard"
+    command: "git diff --cached --unified=5 | xclip -selection clipboard"
     loadingText: "Copying staged diff..."
     output: "none"
