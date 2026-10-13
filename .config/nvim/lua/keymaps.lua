@@ -9,13 +9,6 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_set_keymap("n", "<C-n>", ":Neotree toggle<CR>", { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap("n", "<space>rcu", ":source<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap(
-  "n",
-  "<space>rce",
-  ":e ~/.config/nvim/lua/lazy_setup.lua<CR>",
-  { noremap = true, silent = true }
-)
 vim.api.nvim_set_keymap("n", "<space><space>", ":w<CR>", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "<space>gh", ":q<CR>:q<CR>", { noremap = true, silent = true })
@@ -229,3 +222,53 @@ vim.keymap.set("n", "<leader>od", function()
   vim.bo.modified = false
   vim.cmd "normal! gg"
 end, { desc = "Open staged and unstaged diff" })
+
+vim.keymap.set("n", "<leader>n", "<cmd>Neotree focus<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "Focus Neo-tree",
+})
+
+-- Open new file
+vim.keymap.set("n", "<leader>on", "<cmd>enew<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "New file",
+})
+
+-- Focus neotree
+vim.keymap.set("n", "<C-n>", function()
+  local current_win = vim.api.nvim_get_current_win()
+
+  vim.cmd "Neotree toggle"
+
+  if vim.api.nvim_win_is_valid(current_win) then vim.api.nvim_set_current_win(current_win) end
+end, { noremap = true, silent = true, desc = "Toggle Neo-tree" })
+
+-- Go to previous window
+vim.keymap.set("n", "<leader>r", "<C-w>p", {
+  noremap = true,
+  silent = true,
+  desc = "Return to previous window",
+})
+
+-- Move windows
+vim.keymap.set("n", "<leader>wh", "<C-w>H", {
+  desc = "Move window left",
+})
+
+vim.keymap.set("n", "<leader>wl", "<C-w>L", {
+  desc = "Move window right",
+})
+
+vim.keymap.set("n", "<leader>wk", "<C-w>K", {
+  desc = "Move window up",
+})
+
+vim.keymap.set("n", "<leader>wj", "<C-w>J", {
+  desc = "Move window down",
+})
+
+vim.keymap.set("n", "<Leader>ob", "<Cmd>Tsc<CR>", {
+  desc = "TypeScript build check",
+})
