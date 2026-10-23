@@ -5,3 +5,15 @@ customCommands:
     command: "git diff --cached --unified=5 | xclip -selection clipboard"
     loadingText: "Copying staged diff..."
     output: "none"
+
+  - key: "<c-s>"
+    context: "files"
+    description: "Stash unstaged changes and untracked files (keep staged)"
+    command: "git stash push --keep-index --include-untracked"
+    loadingText: "Stashing unstaged changes and untracked files..."
+    output: "log"
+
+  - key: "p"
+    context: "files"
+    command: "git stash pop"
+    description: "Pop most recent stash"
