@@ -58,7 +58,7 @@ font-5 = Font Awesome 4 Free Solid:style=Solid:size=${POLYBAR_FONT_SIZE};2
 font-6 = Font Awesome 4 Free Regular:style=Regular:size=${POLYBAR_FONT_SIZE};2
 font-7 = JetBrainsMono Nerd Font:style=Regular:size=${POLYBAR_FONT_SIZE};2
 
-modules-left = i3 jellyfin raspi kmonad
+modules-left = i3 jellyfin raspi kmonad handy
 modules-right = ${env:POLYBAR_MODULES_RIGHT}
 
 tray-position = none
@@ -310,3 +310,9 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
+[module/handy]
+type = custom/script
+exec = ~/.config/polybar/scripts/handy-status.sh
+interval = 1
+click-left = ~/Scripts/handy/handy-toggle.sh
